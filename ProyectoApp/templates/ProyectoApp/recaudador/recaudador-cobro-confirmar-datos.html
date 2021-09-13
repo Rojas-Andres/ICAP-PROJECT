@@ -1,0 +1,155 @@
+{% extends 'ProyectoApp/recaudador/recaudador-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+  
+  {% include 'ProyectoApp/messages.html' %}
+
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Confirmar datos</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+              <div class="full-width panel-tittle bg-primary text-center tittles" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+                Datos de la operación
+              </div>
+              <div class="full-width panel-content">
+                
+                <form method="post" action="">
+                {% csrf_token%}
+                  
+                  <div class="wrapper">
+                    <div class="header" style="text-align: center;">
+                      
+                      <img src="data:image/png;base64, /9j/4AAQSkZJRgABAQEBLAEsAAD//gATQ3JlYXRlZCB3aXRoIEdJTVD/4gKwSUNDX1BST0ZJTEUA
+                      AQEAAAKgbGNtcwQwAABtbnRyUkdCIFhZWiAH5QACAAoADwACADlhY3NwTVNGVAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLWxjbXMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1kZXNjAAABIAAAAEBjcHJ0AAABYAAAADZ3dHB0AAABmAAAABRjaGFkAAABrAAAACxyWFlaAAAB2AAAABRiWFlaAAAB7AAAABRnWFlaAAACAAAAABRyVFJDAAACFAAA ACBnVFJDAAACFAAAACBiVFJDAAACFAAAACBjaHJtAAACNAAAACRkbW5kAAACWAAAACRkbWRkAAACfAAAACRtbHVjAAAAAAAAAAEAAAAMZW5VUwAAACQAAAAcAEcASQBNAFAAIABiAHUAaQBsAHQALQBpAG4AIABzAFIARwBCbWx1YwAAAAAAAAABAAAADGVuVVMAAAAaAAAAHABQAHUAYgBsAGkAYwAgAEQAbwBtAGEAaQBuAABYWVogAAAAAAAA9tYAAQAAAADTLXNmMzIAAAAAAAEMQgAABd7///MlAAAHkwAA/ZD///uh///9ogAAA9wAAMBuWFlaIAAAAAAAAG+gAAA49QAAA5BYWVogAAAAAAAAJJ8AAA+EAAC2xFhZWiAAAAAAAABilwAAt4cAABjZcGFyYQAAAAAAAwAAAAJmZgAA8qcAAA1ZAAAT0AAACltjaHJtAAAAAAADAAAAAKPXAABUfAAATM0AAJmaAAAmZwAAD1xtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAEcASQBNAFBtbHVjAAAAAAAAAAEAAAAMZW5VUwAAAAgAAAAcAHMAUgBHAEL/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCABkAGQDAREAAhEBAxEB/8QAGwABAAIDAQEAAAAAAAAAAAAAAAUHAwQIBgH/xAAbAQEAAgMBAQAAAAAAAAAAAAAAAQIDBQYEB//aAAwDAQACEAMQAAABpz6ZQAAAAAAA
+                      AAAAAAAAAAAAAAAAAACz9RPjPdEvhXDoprHbsFlo6hUm6ix9VO3RQHSxr3C/uamrdvHQnM25W7Gv
+                      WHGW+FUbqJnAy1QvoaORVW5gX9zUz3nRmVJYUXmbdEnhQHpev8U45c39VXz3qAAAAAAAAAAAAAAA
+                      AAAAAAAAAAAAAAAAAAAAAAAAf//EACMQAAICAgEDBQEAAAAAAAAAAAQGAwUCBwEQFDQRFRc2UGD/
+                      2gAIAQEAAQUC/VSFgVlluwsK23WlcllJ+OKTCRrTJ1vlYTyWXKTX1ANk1UUVHa1Ws8OzK1mGUIQP
+                      IJP01N5DZ9lSPQFHkmkmmMz5s9dRSc02u11D5Za4VNwX23axkvc6vKljvdlQ4RM3TU3kW2s/dLJO
+                      YR6QiXWNdKU8s4cNWls4R1ODrkUC1fr2MS7NGqdhAVdNVIMV/b5Xlt/H/wD/xAAbEQABBAMAAAAA
+                      AAAAAAAAAAABABARYCAwMf/aAAgBAwEBPwGhDQUMAoaHhu1L/8QALhEAAQMCBAIJBQEAAAAAAAAA
+                      AgEDBAAFERIhMUFxEBMUIlFhgaHhFSM0UFJg/9oACAECAQE/Af2twlnFy5ONR3FeaEy41LmBFHXV
+                      a+qSVTMgJh61DnjK7q6FUucEXTdaS5yiTEQ05LUOSUhpTNMKeuy5srA40F2cAsHwoSQxQh26bzsH
+                      rUL8YOVXDvzMq+VIKCmVNqD7U/AP6ok6+flPxqTceyudUge/xRzlkxXVRMMMPerOA4EfGruAqyhc
+                      catRKsfXx6bzsHrTF16ltG8m3n8VOjG+Iym03TVKS7PIGVR1q3xHCc7Q7U+I4272hrnypy6G60rR
+                      DvVujq4y4JpghUBv21xUVKeffuKoAjpUZhI7SN/5D//EADUQAAIBAgMFBAgGAwAAAAAAAAECAwAE
+                      BRETEiExQVEUInGhEDJCYXKBkcEVI1BSYHOi0fD/2gAIAQEABj8C/Vbtbl5kEQUjSIHHPqKu7WMs
+                      Y4pCoLcaZYjpQp68zDcKED4lL2k+xqID9MqWUP2i0c5CTLIqehpnDaFqpyaUjP5ChFPirpN+1po1
+                      8sqS2tpWuEdA6k8d5PSu0YtdG2zGemhA2PEmjLhWIGVuW2wZW+Yp4ZUMcqHZZTyPpxL4U+9Yl/c1
+                      doiX8wiWTxIz/wBCmldy0jHaLHjnTSXPfc2m2SeZHOklte7ILUOCORbifOu3NiGizOQQYtrzzrBo
+                      nuO1rKXffHs5bIzHM1ZWuZEOwZMupz/761JAGOlJESy+8c6YqMjJErN48Pt6cS+FPvVzd/iOnrOX
+                      2NDPL/KrvA76YCOKZ1imfcp37wela6XjpaE56Yy8moYPhzK4yCOYz3UUezQwjEXVGC6Y1DksidPG
+                      oL6G+fSicOI2UHzrCbi1mjmltSxZVbPpuNQtHcacycMvXT3EVLdXF2HnZdnabccuirU94w2Q57q9
+                      By/iH//EACUQAAICAQMDBAMAAAAAAAAAAAERACExQVGBYXGhEJGx8FBgwf/aAAgBAQABPyH8rejW
+                      cZmzaH1KaCQB1QEHk1cbIA1PSI/Cps7XSjEg2AH+/EFSzRh2NTNyhgHk0RGbIkQFuxBQRg0p3wfH
+                      MFynjcsLzCCh5MHr9nvP0W8AgAmqFnAPEnhOlbJuUJNkw2O5gGB/1maR4SZ4gqQykkg5pzAC9TD6
+                      4WvaKhyAxWvsBGySeGBfIcwbZBtbfAPX7PefcTQdGjgtkVVCHUE7OpG0I3wRkhszHBlzUJEaA6mh
+                      D5P3gUG0BpdlCoDTAiwL44gWRHkZxMMMSzqy4NOS8ivFGUW0MFyUZtdcQ2hEU4wg9vL/AFD/2gAM
+                      AwEAAgADAAAAELbbbbbbbbbbbbbbbbbbbbbbbbbaGela/wC11NZHwWu12/xW2222222222222222
+                      22222222222222222222222//8QAHhEBAAICAgMBAAAAAAAAAAAAAQARITEQIEFQUWD/2gAIAQMB
+                      AT8Q9qF8BcoiVAuURxK+yvnYYONk0QLlUzabR31BrHBfBB8PBczEUH5H/8QAKBEBAAECBAUEAwEA
+                      AAAAAAAAAREAITFBUXEQYZHB8IGhseFQYNHx/9oACAECAQE/EPyo7I3TM5RomtHUCJthQJMmB3dC
+                      pjnCIdZipoIMsnmfz5okjLl3aTFdUnvNEGQo6WBm+9WPDVlnYI8yKgsDOBE9FZ9qfKVcePlbcKa7
+                      2s2EHu0dKARHKiFaCHosR0aFLos9BgOhFG0gA0ZaSqdLgxmZQ5GVOWYg2PvtSBLADyRtUTyINrPy
+                      vHytqxGwibKXUQIXS1k10bZTrUSjhm/ua+RUbUxScVc9s96XiouDFYztnPWglyIkn4+6cdAhTSbm
+                      sMVNhHoxmPnMqHsLwYbr/lEq6Yuq4+afqH//xAAjEAEBAAICAgIBBQAAAAAAAAABEQAhMVFBcWGB
+                      IFBgkaHR/9oACAEBAAE/EP1Vp6qkgch4yTzky6/igoC+g9YAXhcs4RLxdjRVNVGbV0/atn395Rmt
+                      6FaCChoMY6UMvDtfTrWSEuwKVsFWXOSXw/8Atgl9gMCUThkN3jNh9SE8D5BQgbtgjGWvA41Kzc9P
+                      IV6RIhEf9NPj8QX5j6cNn/ehigiLVTT5W7uN28Bojvl9pkeuYIfuNgwpCe+8GnVN2fbgs95Erq7l
+                      4mCXHujUUeXU6rvHXaH5jLstOnn2Tgkz8/gQX8w8NvTO4esBIrGFSqFI0Kx8ms6KaNo0JoqTz5xY
+                      8BTSBYqTFgI7cjGl7RQ4A2kUElsbGVIVgSdPP5zlhOrIatfuBuRK9Usg6qI2QdoLWoiRpNKIoLvg
+                      2A4PdNRO6tgWapef2h//2Q==" alt="Red dot" />
+
+                      {% if ta == 1 %}
+                        <p class="title" style="color: red;"> <u> <strong>  Comprobante de pago por Aporte Mensual </strong> </u> </p> 
+                      {% elif ta == 2 %}
+                        <p class="title" style="color: red;"> <u> <strong> Comprobante de pago por Aporte por Certificación </strong> </u> </p>
+                      {% elif ta == 3 %}
+                        <p class="title" style="color: red;"> <u> <strong> Comprobante de pago por Aporte por Donación </strong> </u> </p>
+                      {% endif %}
+
+                    </div>
+                  </div>
+
+                  <div class="details">
+                    <h7> N° COMPROBANTE: En espera por confirmación... </h7> <br>
+                    <h7> TALONARIO: {{talonario}} </h7> <br>
+                  </div>
+
+                  <br>
+
+                  <div class="details">
+                    <h7> <strong> DATOS DEL COLEGIADO </strong> </h7> <br>
+                    NOMBRE DE USUARIO: {{usuario.username}} <br/>
+                    C.I.: {{usuario.ci}} <br/>
+                    MATRÍCULA: {{usuario.matricula}} <br/>
+                    <hr class="hrItem" />
+                  </div>
+                  
+                  <div class="details">
+                    <h7> <strong> DATOS DEL RECAUDADOR </strong> </h7> <br>
+                    NOMBRE DE USUARIO: {{user_log.username}} <br/>
+                    C.I.: {{user_log.ci}} <br/>
+                    MATRÍCULA: {{user_log.matricula}} <br/>
+                    <hr class="hrItem" />
+                  </div>
+
+                  <div class="details">
+                    <h7> <strong> DATOS DE LA OPERACIÓN </strong> </h7> <br>
+                    
+                    {% if ta == 1 %}
+
+                      MONTO (Bs.): {{am.aporte_mensual}}<br/>
+
+                    {% elif ta == 2 %}
+
+                      MONTO (Bs.): {{aporte_cert.aporte_certificacion}}<br/>
+
+                    {% elif ta == 3 %}
+
+                      MONTO (Bs.): {{aporte_dona_afil}}<br/>
+
+                    {% endif %}
+                    
+                    FECHA DE PAGO: {{fecha_pago}} <br/>
+                    <hr class="hrItem" />
+                  </div>
+
+                  <div style="text-align: center;">
+                    
+                    <div class="btn-group" role="group" aria-label="...">
+                        
+                        <button type="button" onclick="volver()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-registrar#" title="Volver atrás">
+                          <i class="fa fa-chevron-circle-left" aria-hidden="true"></i>
+                        </button>
+                        
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-cobrar">
+                          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                        <div class="mdl-tooltip" for="btn-cobrar">Cobrar</div>
+                        </button>
+                    </div>
+                  
+                  </div>
+
+                </form>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <script>
+  function volver() {
+    window.history.back();
+  }
+  </script>
+
+{% endblock %} 

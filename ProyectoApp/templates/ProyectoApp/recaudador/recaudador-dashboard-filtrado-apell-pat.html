@@ -1,0 +1,56 @@
+{% extends 'ProyectoApp/recaudador/recaudador-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+
+  <!-- LISTA DE AFILIADOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+        <!-- ROJO #e60000 rgba(230, 0, 0, 1) -->
+        <!-- AZÚL #025895 rgba(2, 88, 149, 1)-->
+         <h7 style="text-align: center; color: #ffcc00;"><strong> LISTA DE COLEGIADOS </strong></h7>            
+      </div>
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" style="overflow-x:auto;">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">MATRÍCULA</th>
+              <th style="text-align: center;">CI</th>
+              <th style="text-align: center;">DETALLES</th>
+              <th style="text-align: center;">NOMBRE</th>
+              <th style="text-align: center;">ESTADO</th>
+              <th style="text-align: center;">FECHA MATRICULACIÓN</th>
+              <th style="text-align: center;">VER KARDEX</th>
+              <th style="text-align: center;">IMP. KARDEX</th>
+              <th style="text-align: center;">ACTUALIZAR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              {% for user_filt in user_filts %} 
+              <!-- FILAS n -->
+              <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{user_filt.matricula}}</td>
+              <td style="text-align: center;">{{user_filt.ci}}</td>
+              <td style="text-align: center;" title="Ver detalles del colegiado"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'recaudador-ver-usuario' user_log user_filt.username %}"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;">{{user_filt.apell_pat | upper}} {{user_filt.apell_mat | upper}} {{user_filt.first_name | upper}}</td>
+              {% if user_filt.estado_usuario == True %}
+
+                <td style="text-align: center;">ACTIVO</td>
+              {% elif user_filt.estado_usuario == False %}
+
+                <td style="text-align: center;">INACTIVO</td>
+
+              {% endif %}
+            
+              <td style="text-align: center;">{{user_filt.fecha_registro}}</td>
+              <td style="text-align: center;" title="Ver kardex"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'recaudador-ver-kardex' user_log.username user_filt.username %}"><i class="fa fa-file-text" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;" title="Imprimir kardex"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'imprimir-kardex' user_filt.username %}"><i class="fa fa-print" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;" title="Actualizar datos del colegiado"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'recaudador-act-datos' user_log user_filt.username %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+
+  </section>
+{% endblock %} 

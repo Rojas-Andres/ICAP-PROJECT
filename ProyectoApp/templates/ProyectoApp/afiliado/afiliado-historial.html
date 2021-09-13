@@ -1,0 +1,92 @@
+{% extends 'ProyectoApp/afiliado/afiliado-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+
+  <!-- LISTA DE AFILIADOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+        <!-- ROJO #e60000 rgba(230, 0, 0, 1) -->
+        <!-- AZÚL #025895 rgba(2, 88, 149, 1)-->
+         <h7 style="text-align: center; color: #ffcc00;"><strong> MI HISTORIAL DE TODO TIPO DE APORTES </strong></h7>            
+      </div>
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" style="overflow-x:auto;">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">DETALLES</th>
+              <th style="text-align: center;">N° COMPROBANTE</th>
+              <th style="text-align: center;">TALONARIO</th>
+              <th style="text-align: center;">APORTE MENSUAL</th>
+              <th style="text-align: center;">APORTE CERTIFICACIÓN</th>
+              <th style="text-align: center;">APORTE DONACIÓN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              {% for operacion in historial %} 
+              <!-- FILAS n -->
+              <td style="text-align: center;"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'afiliado-detalles' user_log operacion.comprobante %}" title="Ver detalles de operación"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+              <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{operacion.comprobante}}</td>
+              <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{operacion.talonario}}</td>
+              
+              {% if operacion.aporte_mensual_afil != AMU %}
+                <td style="text-align: center;"><i class="fa fa-check" aria-hidden="true"></i></td>
+              {% elif operacion.aporte_mensual_afil == AMU %}
+                <td style="text-align: center;"><i class="fa fa-times" aria-hidden="true"></i></td>
+              {% endif %}
+
+              {% if operacion.aporte_certif_afil != CERTIFICADO %}
+                <td style="text-align: center;"><i class="fa fa-check" aria-hidden="true"></i></td>
+              {% elif operacion.aporte_certif_afil == CERTIFICADO %}
+                <td style="text-align: center;"><i class="fa fa-times" aria-hidden="true"></i></td>
+              {% endif %}
+
+              {% if operacion.aporte_dona_afil != 0 %}
+                <td style="text-align: center;">-</td>
+              {% elif operacion.aporte_dona_afil == 0 %}
+                <td style="text-align: center;">-</td>
+              {% endif %}
+              
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+        
+        <div style="text-align: center; padding-top: 15px;">
+
+
+        <hr class="invis">
+          
+          <!-- PAGINACIÓN-->
+          <div class="pagination-tutorial">
+          {% if historial.has_previous %}
+            <a class="pagination-tutorial-action" href="?page=1">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{historial.previous_page_number}}">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          {% for num in historial.paginator.page_range %}
+            {% if historial.number == num %}
+              <span class="pagination-tutorial-number pagination-tutorial-current">{{num}}</span>
+            {% elif num > historial.number|add:'-3' and num < historial.number|add:'3' %}
+              <a class="pagination-number" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+          {% endfor %}
+          {% if historial.has_next %}
+            <a class="pagination-tutorial-action" href="?page={{historial.next_page_number}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{historial.paginator.num_pages}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          </div>
+      </div>   
+  </section>
+{% endblock %} 

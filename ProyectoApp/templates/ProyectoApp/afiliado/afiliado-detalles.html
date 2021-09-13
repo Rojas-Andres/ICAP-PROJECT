@@ -1,0 +1,53 @@
+{% extends 'ProyectoApp/afiliado/afiliado-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+
+  <!-- LISTA DE USUARIOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+      	<h5 style="color: green;"> <strong>DETALLES DE LA OPERACIÓN</h5> </strong>
+        
+        <p><strong style="color: red;">RECAUDADOR NOMBRE DE USUARIO:</strong> {{info.recaudador}} </p>
+        <p><strong style="color: red;">RECAUDADOR CI:</strong> {{info.recaudador.ci}} </p>
+        <p><strong style="color: red;">RECAUDADOR MATRÍCULA:</strong> {{info.recaudador.matricula}} </p>
+
+        <p><strong>N° DE COMPROBANTE:</strong> {{info.comprobante}}</p>
+        <p><strong>TALONARIO:</strong> {{info.talonario}}</p>
+        <p><strong>FECHA DE COBRO:</strong> {{info.fecha_pago}}</p>
+
+        {% if info.aporte_dona_afil != '0' %}
+          <p><strong>MONTO:</strong> {{info.aporte_dona_afil}} Bs. (Aporte por donación)</p>
+
+        {% elif info.aporte_certif_afil.aporte_certificacion_deno == 'CERTIFICADO' %}
+          <p><strong>MONTO:</strong> {{info.aporte_certif_afil.aporte_certificacion}} Bs. (Aporte por certificación)</p>
+
+        {% elif info.aporte_mensual_afil.aporte_mensual_deno == 'AMU' %}
+          <p><strong>MONTO:</strong> {{info.aporte_mensual_afil.aporte_mensual}} Bs. (Aporte mensual)</p>
+
+        {% elif info.aporte_mensual_afil.aporte_mensual_deno == 'AMI' %}
+          <p><strong>MONTO:</strong> {{info.aporte_mensual_afil.aporte_mensual}} Bs. (Aporte mensual)</p>
+
+        {% endif %}
+        
+        <hr>
+
+        <div class="btn-group-vertical" role="group" aria-label="...">
+
+          <li style="list-style:none;">
+              
+              <div>
+                <a href="{% url 'generar-pdf' info.comprobante %}" target="_blank" class="section-btn2 btn btn-default smoothScroll"> IMPRIMIR COMPROBANTE <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+              </div>
+
+          </li>
+
+          <br>
+                            
+        </div>
+
+      </div>
+    </div>
+          
+  </section>
+{% endblock %} 

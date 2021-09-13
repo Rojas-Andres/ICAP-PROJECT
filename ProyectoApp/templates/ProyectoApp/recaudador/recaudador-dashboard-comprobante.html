@@ -1,0 +1,53 @@
+{% extends 'ProyectoApp/recaudador/recaudador-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+
+  <!-- LISTA DE USUARIOS -->
+    
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+        <!-- ROJO #e60000 rgba(230, 0, 0, 1) -->
+        <!-- AZÚL #025895 rgba(2, 88, 149, 1)-->
+         <h7 style="text-align: center; color: #ffcc00;"><strong> INFORMACIÓN DEL APORTE </strong></h7>            
+      </div>
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" style="overflow-x:auto;">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+          <thead>
+            <tr>
+              <th style="text-align: center;">VER DETALLES</th>
+              <th style="text-align: center;">N° COMPROBANTE</th>
+              <th style="text-align: center;">N° TALONARIO</th>
+              <th style="text-align: center;">NOMBRE RECAUDADOR</th>
+              <th style="text-align: center;">NOMBRE COLEGIADO</th>
+              <th style="text-align: center;">ESTADO COLEGIADO</th>
+              <th style="text-align: center;">FECHA MATRICULACIÓN</th>
+              <th style="text-align: center;">VER KARDEX</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              <!-- FILAS n -->
+              <td style="text-align: center;" title="Ver detalles de operación"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'recaudador-detalles' user_log comprobante %}"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;">{{aporte.comprobante}}</td>
+              <td style="text-align: center;">{{aporte.talonario}}</td>
+              <td style="text-align: center;">{{recaudador.apell_pat | upper}} {{recaudador.apell_mat | upper}} {{recaudador.first_name | upper}}</td>
+              <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">
+                {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}}
+              </td>
+              {% if afiliado.estado_usuario == True %}
+
+                <td style="text-align: center;">ACTIVO</td>
+              {% elif afiliado.estado_usuario == False %}
+
+                <td style="text-align: center;">INACTIVO</td>
+
+              {% endif %}
+              <td style="text-align: center;">{{afiliado.fecha_registro}}</td>
+              <td style="text-align: center;" title="Ver kardex colegiado"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'recaudador-ver-kardex' user_log afiliado %}"><i class="fa fa-file-text" aria-hidden="true"></i></button></td>
+
+          </tbody>
+        </table>
+          
+  </section>
+{% endblock %} 

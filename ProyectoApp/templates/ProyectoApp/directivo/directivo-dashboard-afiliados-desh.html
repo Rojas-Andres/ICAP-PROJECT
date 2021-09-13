@@ -1,0 +1,88 @@
+{% extends 'ProyectoApp/directivo/directivo-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+
+  <!-- LISTA DE AFILIADOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+        <!-- ROJO #e60000 rgba(230, 0, 0, 1) -->
+        <!-- AZÚL #025895 rgba(2, 88, 149, 1)-->
+         <h7 style="text-align: center; color: #ffcc00;"><strong> LISTA DE COLEGIADOS INACTIVOS </strong></h7>            
+      </div>
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" style="overflow-x:auto;">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">MATRÍCULA</th>
+              <th style="text-align: center;">CI</th>
+              <th style="text-align: center;">DETALLES</th>
+              <th style="text-align: center;">NOMBRE</th>
+              <th style="text-align: center;">ESTADO</th>
+              <th style="text-align: center;">FECHA MATRICULACIÓN</th>
+              <th style="text-align: center;">VER KARDEX</th>
+              <th style="text-align: center;">IMP. KARDEX</th>
+              <th style="text-align: center;">ACTUALIZAR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              {% for afiliado in afiliados %} 
+              <!-- FILAS n -->
+              <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{afiliado.matricula}}</td>
+              <td style="text-align: center;">{{afiliado.ci}}</td>
+              <td style="text-align: center;" title="Ver detalles del colegiado"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'directivo-ver-usuario' user_log afiliado.username %}"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;"> {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}} </td>
+              {% if afiliado.estado_usuario == True %}
+
+                <td style="text-align: center;">ACTIVO</td>
+              {% elif afiliado.estado_usuario == False %}
+
+                <td style="text-align: center;">INACTIVO</td>
+
+              {% endif %}
+              
+              <td style="text-align: center;">{{afiliado.fecha_registro}}</td>
+              <td style="text-align: center;" title="Ver kardex"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'directivo-ver-kardex' user_log.username afiliado.username %}"><i class="fa fa-file-text" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;" title="Imprimir kardex"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'imprimir-kardex' afiliado.username %}"><i class="fa fa-print" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;" title="Actualizar datos del colegiado"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'directivo-act-datos' user_log afiliado.username %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+        <div style="text-align: center; padding-top: 15px;">  
+        <!-- LISTA DE AFILIADOS -->
+          
+          <!-- PAGINACIÓN-->
+          <div class="pagination-tutorial">
+          {% if afiliados.has_previous %}
+            <a class="pagination-tutorial-action" href="?page=1">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{afiliados.previous_page_number}}">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          {% for num in afiliados.paginator.page_range %}
+            {% if afiliados.number == num %}
+              <span class="pagination-tutorial-number pagination-tutorial-current">{{num}}</span>
+            {% elif num > afiliados.number|add:'-3' and num < afiliados.number|add:'3' %}
+              <a class="pagination-number" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+          {% endfor %}
+          {% if afiliados.has_next %}
+            <a class="pagination-tutorial-action" href="?page={{afiliados.next_page_number}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{afiliados.paginator.num_pages}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          </div>
+      </div> 
+  </section>
+{% endblock %} 

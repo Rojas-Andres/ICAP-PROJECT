@@ -1,0 +1,159 @@
+{% extends 'ProyectoApp/afiliado/afiliado-dashboard.html' %}
+{% load static %}
+{% block info %}
+
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Mi Kardex</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+              <div class="full-width panel-tittle bg-primary text-center tittles" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+                Matrícula ICAP N°: {{user_log.matricula}} <br>
+              </div>
+              <div class="full-width panel-content">
+                  
+                  {% include 'ProyectoApp/messages.html' %}
+
+                  <p class="text-center">
+                    {% if not user_log.foto %}
+                       <img class="dashboard" src="{% static 'ProyectoApp/img/foto-estandar.jpg' %}">
+                    {% elif user_log.foto %}
+                       <img class="dashboard" src="{{user_log.foto.url}}">
+                    {% endif %}
+                  </p>
+
+                  <p class="text-center">
+                    <h5 class="text-condensedLight" style="text-align: center;"><strong>Datos e información</strong></h5>
+                  </p>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">1. Nombres:</h7> {{user_log.apell_pat | upper}} {{user_log.apell_mat | upper}} {{user_log.first_name | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">2. Lugar y fecha de nacimiento:</h7> {{user_log.lugar_nac | upper}} | {{user_log.fecha_nac}}
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">3. N° C.I.:</h7> {{user_log.ci}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">4. Estado civil:</h7> {{user_log.est_civil | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">5. N° RUC:</h7> {{user_log.num_ruc}}
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">6. Universidad donde cursó sus estudios:</h7> {{user_log.univ_estud | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">7. Fecha de exámen de Tesis, Grado o Corte:</h7> {{user_log.fecha_tg | upper}}
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">8. Fecha y Universidad que le ha otorgado el grado de Licenciado:</h7> {{user_log.fecha_ol}} | {{user_log.univ_lic | upper}}
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">9. Fecha y Tipo de Entidad que le extendió el título de Abogado:</h7> {{user_log.fecha_tit_pn}} | {{user_log.ent_pub | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">10. Fecha de matriculación en el Colegio:</h7> {{user_log.fecha_registro}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">11. Cargos desempeñados en el ramo Judicial:</h7> {{user_log.cargos_judic | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">12. Cargos desempeñados en la Administración Pública:</h7> {{user_log.cargos_admin_pub | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">13. Cargos desempeñados en empresas privadas:</h7> {{user_log.cargos_priv_otras | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">14. Tiempo de ejecución profesional sin dependencia (Bufete):</h7> {{user_log.tiempo_ejec_prof_sd | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">15. Cargo que desempeña actualmente:</h7> {{user_log.cargo_actual | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">16. Especialidad en el ejercicio del Derecho:</h7> {{user_log.espec_ejer_der | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">17. Producciones jurídicas (libros, revistas, artículos, entre otras):</h7> {{user_log.prod_jur | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">18. Ejercicio de la Cátedra:</h7> {{user_log.ejer_cated | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">19. Estudios de especialización:</h7> {{user_log.estud_espec | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">20. Reconocimientos obtenidos:</h7> {{user_log.recon_obt | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">21. Asistencia a eventos internacionales:</h7> {{user_log.asist_event_inter | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">22. Instituciones donde cuente con seguro:</h7> {{user_log.inst_aseg | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">23. Beneficiarios:</h7> {{user_log.beneficiarios | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">24. Dirección oficina:</h7> {{user_log.direc_ofic | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">25. Teléfono oficina:</h7> {{user_log.tel_ofic }}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">26. Dirección domicilio:</h7> {{user_log.direcc | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">27. Teléfono domicilio:</h7> {{user_log.telefono}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">28. Email:</h7> {{user_log.email}}
+                  </div>
+
+                  <hr>
+
+                  <div style="text-align: center;">
+                    <a href="{% url 'afiliado-dashboard' user_log.username %}" class="section-btn2 btn btn-default smoothScroll">Volver a la ventana principal</a>
+                  </div>
+                        
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+{% endblock %} 
