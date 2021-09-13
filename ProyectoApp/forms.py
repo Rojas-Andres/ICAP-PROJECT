@@ -146,11 +146,7 @@ class FormularioRegistroUsuario(forms.ModelForm):
 			),
 
 			'fecha_nac': forms.DateInput(
-				
-				attrs = {
-					'class': 'mdl-textfield__input',
-					'placeholder': 'dd/mm/aaaa'				
-				}
+				attrs={ 'class': 'mdl-textfield__input' }
 			),
 
 
@@ -1490,10 +1486,9 @@ class FormularioActualizarDatos(forms.ModelForm):
 			),
 
 			'fecha_nac': forms.DateInput(
-				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					'placeholder': 'dd/mm/aaaa'				
+					'type':'date',
 				}
 			),
 
@@ -1510,8 +1505,8 @@ class FormularioActualizarDatos(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					'placeholder': 'dd/mm/aaaa'
-					
+					'placeholder': 'dd/mm/aaaa',
+					'type':'date',
 				}
 			),
 

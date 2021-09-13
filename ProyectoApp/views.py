@@ -1235,7 +1235,7 @@ class DirectivoActDatos(DetailView):
 				if len(nueva_matricula)>4:
 					messages.error(request, 'La nueva matricula es mayor a 4!!!')
 					return HttpResponseRedirect(f'/directactdatos/{user_log}/{user_filt}/')
-
+			print(request.POST)
 			if form.is_valid():
 				
 				try:
@@ -1243,8 +1243,8 @@ class DirectivoActDatos(DetailView):
 					
 					if form.cleaned_data['foto'] != None:
 						user_mod.foto = form.cleaned_data['foto']
-
 					
+					#print("-->>>>>>>>>>>>>>>"+form.cleaned_data['fecha_nac'])
 					user_mod.usuario_vivo = form.cleaned_data['usuario_vivo']
 					user_mod.estado_usuario = form.cleaned_data['estado_usuario']
 					user_mod.matricula = nueva_matricula
