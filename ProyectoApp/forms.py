@@ -7,6 +7,7 @@ import datetime
 
 from .models import CustomUser, RegistrarUsuario, AporteAfiliado, AporteMensual
 
+
 class CustomUserCreationForm(UserCreationForm):
 	
 	class Meta:
