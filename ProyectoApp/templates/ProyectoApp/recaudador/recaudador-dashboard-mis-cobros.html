@@ -1,0 +1,114 @@
+{% extends 'ProyectoApp/recaudador/recaudador-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+  
+  {% include 'ProyectoApp/messages.html' %}
+  
+  <!-- LISTA DE USUARIOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+        <!-- ROJO #e60000 rgba(230, 0, 0, 1) -->
+        <!-- AZÚL #025895 rgba(2, 88, 149, 1)-->
+         <h7 style="text-align: center; color: #ffcc00;"><strong> MIS RECAUDACIONES </strong></h7>            
+      </div>
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" style="overflow-x:auto;">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">VER DETALLES</th>
+              <th style="text-align: center;">N° COMPROBANTE</th>
+              <th style="text-align: center;">FECHA DE PAGO</th>
+              <th style="text-align: center;">TALONARIO</th>
+              <th style="text-align: center;">NUMERO DE RECIBO</th>
+              <th style="text-align: center;">MES PAGADO</th>
+              <th style="text-align: center;">CI COLEGIADO</th>
+              <th style="text-align: center;">MATRÍCULA COLEGIADO</th>
+              <th style="text-align: center;">NOMBRE DE USUARIO COLEGIADO</th>
+              <th style="text-align: center;">ESTADO COLEGIADO</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              {% for cobro in cobros %} 
+              <!-- FILAS n -->
+              <td style="text-align: center;"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'recaudador-detalles' user_log cobro.comprobante %}"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+              <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{cobro.comprobante}}</td>
+              <td style="text-align: center;">{{cobro.fecha_pago}}</td>
+              <td style="text-align: center;">{{cobro.talonario}}</td>
+              <td style="text-align: center;">{{cobro.numero_recibo}}</td>
+              <td style="text-align: center;">{{cobro.fecha_id_pago.agno}}--{{cobro.fecha_id_pago.mes_abreviado}} </td>
+              <td style="text-align: center;">{{cobro.afiliado.ci}}</td>
+              <td style="text-align: center;">{{cobro.afiliado.matricula}}</td>
+              <td style="text-align: center;">{{cobro.afiliado.username}}</td>
+
+              {% if cobro.afiliado.estado_usuario == True %}
+               <td style="text-align: center;">ACTIVO</td>
+              {% elif cobro.afiliado.estado_usuario == False %}
+               <td style="text-align: center;">INACTIVO</td>
+              {% endif %}
+
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+
+        {% if fechas == True %}
+
+        <div style="text-align: center; padding-top: 15px;">
+
+          <div class="btn-group-vertical" role="group" aria-label="...">
+
+              <li style="list-style:none;">
+                  <div class="btn-group" role="group" aria-label="...">
+
+                    <div>
+                      <a href="{% url 'recaudador-exp-mis-cobros-fechas' user_log start_date end_date %}" class="section-btn2 btn btn-default smoothScroll"> Imprimir comprobante <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                    </div>
+
+                  </div>
+              </li>
+
+          </div>
+
+        </div>
+
+        <hr class="invis">
+        
+        {% endif %}
+
+          <!-- PAGINACIÓN-->
+          <div class="pagination-tutorial">
+          {% if cobros.has_previous %}
+            <a class="pagination-tutorial-action" href="?page=1">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{cobros.previous_page_number}}">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          {% for num in cobros.paginator.page_range %}
+            {% if cobros.number == num %}
+              <span class="pagination-tutorial-number pagination-tutorial-current">{{num}}</span>
+            {% elif num > cobros.number|add:'-3' and num < cobros.number|add:'3' %}
+              <a class="pagination-number" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+          {% endfor %}
+          {% if cobros.has_next %}
+            <a class="pagination-tutorial-action" href="?page={{cobros.next_page_number}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{cobros.paginator.num_pages}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          </div>
+                  
+          </tbody>
+        </table>
+      </div>  
+  </section>
+{% endblock %} 

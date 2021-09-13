@@ -1,0 +1,277 @@
+{% extends 'ProyectoApp/recaudador/recaudador-dashboard.html' %}
+{% load static %}
+{% block info %}
+
+  <!-- LISTA DE AFILIADOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+        <!-- ROJO #e60000 rgba(230, 0, 0, 1) -->
+        <!-- AZÚL #025895 rgba(2, 88, 149, 1)-->
+         <h7 style="text-align: center; color: #ffcc00;"><strong> HISTORIAL DE APORTES MENSUALES DE {{afiliado.username | upper}} </strong></h7> <br>
+         <h7 style="text-align: center; color: #ffcc00;"><strong> Nombre: {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}} </strong></h7> <br>
+         <h7 style="text-align: center; color: #ffcc00;"><strong> Matrícula ICAP: {{afiliado.matricula}} </strong></h7> <br>
+         <h7 style="text-align: center; color: #ffcc00;"><strong> C.I.: {{afiliado.ci}} </strong></h7> <br>
+         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center;">
+            {% if not afiliado.foto %}
+              <img class="dashboard" src="{% static 'ProyectoApp/img/foto-estandar.jpg' %}">
+            {% elif afiliado.foto %}
+              <img class="dashboard" src="{{afiliado.foto.url}}">
+            {% endif %}
+         </div>
+         
+         {% if afiliado.estado_usuario == True %}
+          <h7 style="text-align: center; color: #ffcc00;"><strong> COLEGIADO ACTIVO </strong></h7>
+         {% elif afiliado.estado_usuario == False %}
+          <h7 style="text-align: center; color: #ffcc00;"><strong> COLEGIADO INACTIVO </strong></h7>
+          {% endif %}
+      </div>
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" style="overflow-x:auto;">
+        {% include 'ProyectoApp/messages.html' %}
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">DETALLES</th>
+              <th style="text-align: center;">N° COMPROBANTE</th>
+              <th style="text-align: center;">TALONARIO</th>
+              <th style="text-align: center;">NUMERO DE RECIBO</th>
+              <th style="text-align: center;">MES PAGADO</th>
+              <th style="text-align: center;">FECHA DE PAGO</th>
+              <th style="text-align: center;">NOMBRE DEL RECAUDADOR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              {% for aporte in historial %} 
+              <!-- FILAS n -->
+               <td style="text-align: center;" title="Detalles de operación"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'recaudador-detalles' user_log aporte.comprobante %}"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+               <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{aporte.comprobante}}</td>
+               <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{aporte.talonario}}</td>
+               <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{aporte.numero_recibo}}</td>
+               <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{aporte.fecha_id_pago.agno}}- {{aporte.fecha_id_pago.mes_abreviado}}</td>
+               <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{aporte.fecha_pago}}</td>
+               <td style="text-align: center;">{{aporte.recaudador.apell_pat | upper}} {{aporte.recaudador.apell_mat | upper}} {{aporte.recaudador.first_name | upper}}</td>
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" >
+
+        <div style="text-align: center; padding-top: 15px;">
+          <div>
+            <strong> <h7>  Cantidad de Aportes Mensuales: {{cant_aportes}}</h7> </strong>
+          </div>
+
+          <div>
+            <strong> <h7>Monto total aportado ({{cant_aportes}}x{{monto_unit}} Bs.): {{monto}} Bs.</h7> </strong>
+          <div>
+
+          {% if tam == 'AMU' and th == 'TOTAL' %}
+
+            <div style="text-align: center; padding-top: 15px;">
+
+              <div class="btn-group-vertical" role="group" aria-label="...">
+
+                  <li style="list-style:none;">
+                      <div class="btn-group" role="group" aria-label="...">
+                        
+                        <div>
+                          <a href="{% url 'recaudador-enviar-historial-afil' user_log afiliado th 'AMU' None None None %}" class="section-btn2 btn btn-default smoothScroll"> Enviar historial a {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}} <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                        </div>
+
+                        <br>
+
+                        <div>
+                          <a href="{% url 'recaudador-exp-historial-afil' user_log afiliado 'AMU' None None None %}" class="section-btn2 btn btn-default smoothScroll"> Exportar historial a PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                        </div>
+
+                        <br>
+
+                      </div>
+
+                  </li>
+
+              </div>
+
+            </div>
+
+          {% elif tam == 'AMU' and th == 'MES' %}
+
+            <div style="text-align: center; padding-top: 15px;">
+
+              <div class="btn-group-vertical" role="group" aria-label="...">
+
+                  <li style="list-style:none;">
+                      <div class="btn-group" role="group" aria-label="...">
+                        
+                        <div>
+                          <a href="{% url 'recaudador-enviar-historial-afil' user_log afiliado th 'AMU' True None None %}" class="section-btn2 btn btn-default smoothScroll"> Enviar historial a {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}} <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                        </div>
+
+                        <br>
+
+                        <div>
+                          <a href="{% url 'recaudador-exp-historial-afil' user_log afiliado 'AMU' True None None %}" class="section-btn2 btn btn-default smoothScroll"> Exportar historial a PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                        </div>
+
+                        <br>
+
+                      </div>
+
+                  </li>
+
+              </div>
+
+            </div>
+
+          {% elif tam == 'AMU' and th == 'FECHAS' %}
+
+            <div style="text-align: center; padding-top: 15px;">
+
+              <div class="btn-group-vertical" role="group" aria-label="...">
+
+                  <li style="list-style:none;">
+                      <div class="btn-group" role="group" aria-label="...">
+                        
+                        <div>
+                          <a href="{% url 'recaudador-enviar-historial-afil' user_log afiliado th 'AMU' None start_date end_date %}" class="section-btn2 btn btn-default smoothScroll"> Enviar historial a {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}} <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                        </div>
+
+                        <br>
+
+                        <div>
+                          <a href="{% url 'recaudador-exp-historial-afil' user_log afiliado 'AMU' None start_date end_date %}" class="section-btn2 btn btn-default smoothScroll"> Exportar historial a PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                        </div>
+
+                        <br>
+
+                      </div>
+
+                  </li>
+
+              </div>
+
+            </div>
+
+            {% elif tam == 'AMI' and th == 'TOTAL' %}
+
+            <div style="text-align: center; padding-top: 15px;">
+
+              <div class="btn-group-vertical" role="group" aria-label="...">
+
+                  <li style="list-style:none;">
+                      <div class="btn-group" role="group" aria-label="...">
+                        
+                        <div>
+                          <a href="{% url 'recaudador-enviar-historial-afil' user_log afiliado th 'AMI' None None None %}" class="section-btn2 btn btn-default smoothScroll"> Enviar historial a {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}} <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                        </div>
+
+                        <br>
+
+                        <div>
+                          <a href="{% url 'recaudador-exp-historial-afil' user_log afiliado 'AMI' None None None %}" class="section-btn2 btn btn-default smoothScroll"> Exportar historial a PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                        </div>
+
+                        <br>
+
+                      </div>
+
+                  </li>
+
+              </div>
+
+            </div>
+
+            {% elif tam == 'AMI' and th == 'MES' %}
+
+              <div style="text-align: center; padding-top: 15px;">
+
+                <div class="btn-group-vertical" role="group" aria-label="...">
+
+                    <li style="list-style:none;">
+                        <div class="btn-group" role="group" aria-label="...">
+                          
+                          <div>
+                            <a href="{% url 'recaudador-enviar-historial-afil' user_log afiliado th 'AMI' True None None %}" class="section-btn2 btn btn-default smoothScroll"> Enviar historial a {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}} <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                          </div>
+
+                          <br>
+
+                          <div>
+                            <a href="{% url 'recaudador-exp-historial-afil' user_log afiliado 'AMI' True None None %}" class="section-btn2 btn btn-default smoothScroll"> Exportar historial a PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                          </div>
+
+                          <br>
+
+                        </div>
+
+                    </li>
+
+                </div>
+
+              </div>
+
+            {% elif tam == 'AMI' and th == 'FECHAS' %}
+
+              <div style="text-align: center; padding-top: 15px;">
+
+                <div class="btn-group-vertical" role="group" aria-label="...">
+
+                    <li style="list-style:none;">
+                        <div class="btn-group" role="group" aria-label="...">
+                          
+                          <div>
+                            <a href="{% url 'recaudador-enviar-historial-afil' user_log afiliado th 'AMI' None start_date end_date %}" class="section-btn2 btn btn-default smoothScroll"> Enviar historial a {{afiliado.apell_pat | upper}} {{afiliado.apell_mat | upper}} {{afiliado.first_name | upper}} <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                          </div>
+
+                          <br>
+
+                          <div>
+                            <a href="{% url 'recaudador-exp-historial-afil' user_log afiliado 'AMI' None start_date end_date %}" class="section-btn2 btn btn-default smoothScroll"> Exportar historial a PDF <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+                          </div>
+
+                          <br>
+
+                        </div>
+
+                    </li>
+
+                </div>
+
+              </div>
+
+            {% endif %}
+
+          </div>
+
+          <!-- PAGINACIÓN-->
+          <div class="pagination-tutorial">
+          {% if historial.has_previous %}
+            <a class="pagination-tutorial-action" href="?page=1">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{historial.previous_page_number}}">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          {% for num in historial.paginator.page_range %}
+            {% if historial.number == num %}
+              <span class="pagination-tutorial-number pagination-tutorial-current">{{num}}</span>
+            {% elif num > historial.number|add:'-3' and num < historial.number|add:'3' %}
+              <a class="pagination-number" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+          {% endfor %}
+          {% if historial.has_next %}
+            <a class="pagination-tutorial-action" href="?page={{historial.next_page_number}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{historial.paginator.num_pages}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          </div>
+      </div>    
+  </section>
+{% endblock %} 

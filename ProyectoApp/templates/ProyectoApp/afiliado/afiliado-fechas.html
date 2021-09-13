@@ -1,0 +1,53 @@
+{% extends 'ProyectoApp/afiliado/afiliado-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+  
+  {% include 'ProyectoApp/messages.html' %}
+
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Establezca un rango de fechas</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+              <div class="full-width panel-tittle bg-primary text-center tittles">
+                Formulario para filtrar historial entre fechas
+              </div>
+              <div class="full-width panel-content">
+                
+                <form method="post" action="">
+                {% csrf_token%}
+                  <h5 class="text-condensedLight">Fechas [INICIAL - FINAL]</h5>
+                  
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.fecha1}}
+                    
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.fecha2}}
+                    
+                  </div>
+
+                  <p class="text-center">
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
+                      <i class="fa fa-check-circle" aria-hidden="true"></i>
+                    </button>
+                    <div class="mdl-tooltip" for="btn-addClient">Filtrar</div>
+                  </p>
+                
+                </form>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+{% endblock %} 

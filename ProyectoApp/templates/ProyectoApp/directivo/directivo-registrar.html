@@ -1,0 +1,216 @@
+{% extends 'ProyectoApp/directivo/directivo-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Registro</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+              
+              {% if afiliado == True %}
+
+                <div class="full-width panel-tittle bg-primary text-center tittles" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+                  Formulario de registro para nuevo Colegiado
+                </div>
+                
+
+              {% elif afiliado != True %}
+                <div class="full-width panel-tittle bg-primary text-center tittles" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+                Formulario de registro para nuevo Recaudador
+              </div>
+
+              {% endif %}
+
+              <div class="full-width panel-content">
+                {% include 'ProyectoApp/messages.html' %}
+                <form method="post" action="" enctype="multipart/form-data">
+                {% csrf_token%}
+                  <h5 class="text-condensedLight" style="text-align: center;"><strong><u>Datos</strong></u></h5>
+                  
+                  <div>
+                    Foto {{form.foto}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.fecha_registro}}
+                    <label class="mdl-textfield__label" for="DNIClient">Fecha de Registro</label>
+                  </div>
+                  {% if afiliado == True %}
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.matricula}}
+                    <label class="mdl-textfield__label" for="DNIClient">Matrícula</label>
+                  </div>
+                  {% endif %}
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.first_name}}
+                    <label class="mdl-textfield__label" for="emailClient">Nombre</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.apell_pat}}
+                    <label class="mdl-textfield__label" for="emailClient">Apellido (P)</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.apell_mat}}
+                    <label class="mdl-textfield__label" for="emailClient">Apellido (M)</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.ci}}
+                    <label class="mdl-textfield__label" for="DNIClient">CI</label> 
+                  </div>
+
+                  <!-- Nuevo campo expedido-->
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    Expedido : {{form.expedido}}
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.fecha_nac}}
+                    <label class="mdl-textfield__label" for="DNIClient">Fecha de nacimiento</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.lugar_nac}}
+                    <label class="mdl-textfield__label" for="DNIClient">Lugar de nacimiento</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    Estado civil: {{form.est_civil}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.univ_estud}}
+                    <label class="mdl-textfield__label" for="DNIClient">Universidad donde cursó sus estudios</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.fecha_ol}}
+                    <label class="mdl-textfield__label" for="DNIClient">Fecha en que se le ha otorgado el grado de Licenciado</label> 
+                  </div>
+
+            
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    La Universidad que le ha otorgado el grado de licenciatura es una: {{form.ent_pub}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.fecha_tit_pn}}
+                    <label class="mdl-textfield__label" for="DNIClient">Fecha de título Provisión Nacional</label> 
+                  </div>
+
+
+       
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.cargo_actual}}
+                    <label class="mdl-textfield__label" for="DNIClient">Cargo que desempeña actualmente</label> 
+                  </div>
+
+        
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.estud_espec}}
+                    <label class="mdl-textfield__label" for="DNIClient">Estudios de especialización</label> 
+                  </div>
+
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.direc_ofic}}
+                    <label class="mdl-textfield__label" for="DNIClient">Dirección oficina</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.tel_ofic}}
+                    <label class="mdl-textfield__label" for="DNIClient">Teléfono oficina</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.direcc}}
+                    <label class="mdl-textfield__label" for="DNIClient">Dirección domicilio</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.telefono}}
+                    <label class="mdl-textfield__label" for="DNIClient">Teléfono domicilio</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.celular}}
+                    <label class="mdl-textfield__label" for="DNIClient">Celular</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.email}}
+                    <label class="mdl-textfield__label" for="emailClient">email</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.username}}
+                    <label class="mdl-textfield__label" for="NameClient">Nombre de Usuario</label>
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.password1}}
+                    <label class="mdl-textfield__label" for="LastNameClient">Contraseña</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.password2}}
+                    <label class="mdl-textfield__label" for="LastNameClient">Verificar contraseña</label>
+                  </div>
+                  
+                  {% if afiliado == True %}
+
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                      {{form.estado_usuario}}
+                      <label>El colegiado estará ACTIVO</label>
+                    </div>
+
+                  {% endif %}
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.observ}}
+                  </div>
+
+                  <div style="text-align: center;">
+                    
+                    <div class="btn-group" role="group" aria-label="...">
+                        
+                        <button type="button" onclick="cancelar()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-registrar#" title="Cancelar" style="color: red;">
+                          <i class="fa fa-ban" aria-hidden="true"></i>
+                        </button>
+                        
+                        <button type="submit" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-registrar#" title="Registrar">
+                          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                        </button>
+                      
+                    </div>
+                  
+                  </div>
+
+                </form>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <script>
+  function cancelar() {
+    window.location="{% url 'directivo-dashboard' user_log.username %}";
+  }
+  </script>
+
+{% endblock %} 

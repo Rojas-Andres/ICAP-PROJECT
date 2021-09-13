@@ -1,0 +1,46 @@
+{% extends 'ProyectoApp/directivo/directivo-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Usuario</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+              <div class="full-width panel-tittle bg-primary text-center tittles" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+                FILTRAR
+              </div>
+              <div class="full-width panel-content">
+                
+                {% include 'ProyectoApp/messages.html' %}
+
+                <form method="post" action="">
+                {% csrf_token%}
+      
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.apell_pat}}
+                    <label class="mdl-textfield__label" for="DNIClient">Apellido paterno</label>
+                  </div>
+
+                  <p class="text-center">
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </button>
+                    <div class="mdl-tooltip" for="btn-addClient">Buscar</div>
+                  </p>
+                
+                </form>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+{% endblock %} 

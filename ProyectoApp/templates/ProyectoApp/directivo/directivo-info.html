@@ -1,0 +1,110 @@
+{% extends 'ProyectoApp/directivo/directivo-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+  
+  <hr>
+
+  <div>
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+        <!-- ROJO #e60000 rgba(230, 0, 0, 1) -->
+        <!-- AZÚL #025895 rgba(2, 88, 149, 1)-->
+         <h7 style="text-align: center; color: #ffcc00;"><strong> RESUMEN INFORMATIVO </strong></h7>            
+      </div>
+    
+    <section class="full-width text-center" style="padding: 40px 0;">
+      <!-- Tiles -->
+      
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{deuda}} Bs.<br>
+            <small>DEUDA COLEGIADOS</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+      
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{cant_recaud}}<br>
+            <small>RECAUDADORES</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+      
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{cant_afil}}<br>
+            <small>COLEGIADOS</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+    
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{monto_recaudar_mes}} Bs.<br>
+            <small>MONTO A RECAUDAR ESTE MES (Bs.)</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{monto_recaudado_mes}} Bs.<br>
+            <small>RECAUDADO ESTE MES</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{monto_faltante_mes}} Bs.<br>
+            <small>DEUDA MENSUAL TOTAL</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{aportes_cert_mes}} Bs.<br>
+            <small>APORT. CERTIFICADOS ESTE MES</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{aportes_dona_mes}} Bs.<br>
+            <small>APORT. DONACIONES ESTE MES</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+
+      <article class="full-width tile">
+        <div class="tile-text">
+          <span class="text-condensedLight">
+            {{nuevos_afiliados_mes}}<br>
+            <small>COLEGIADOS NUEVOS ESTE MES</small>
+          </span>
+        </div>
+        <i class="fa fa-lock" aria-hidden="true"></i>
+      </article>
+
+    </section>
+  </div> 
+
+{% endblock %} 

@@ -1,0 +1,88 @@
+{% extends 'ProyectoApp/directivo/directivo-dashboard.html' %}
+<!--{% load static %}-->
+
+{% block info %}
+
+    <!-- LISTA DE AFILIADOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <h7> HISTORIAL </h7>
+      <h7>COBROS MENSUALES REALIZADOS</h7>
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+          <thead>
+            <tr>
+              <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">COMPROBANTE</th>
+              <th style="text-align: center;">RECAUDADOR</th>
+              <th style="text-align: center;">FECHA</th>
+              <th style="text-align: center;">Monto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              {% for operacion in historial %} 
+              <!-- FILAS n -->
+              <td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{operacion.comprobante}}</td>
+              <td style="text-align: center;">{{operacion.recaudador}}</td>
+              <td style="text-align: center;">{{operacion.fecha_pago}}</td>
+              <td style="text-align: center;">{{operacion.aporte_mensual_afil.aporte_mensual}}</td>
+
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+
+        <hr class="invis">
+          
+          <!-- PAGINACIÓN-->
+          <div class="pagination-tutorial">
+          {% if historial.has_previous %}
+            <a class="pagination-tutorial-action" href="?page=1">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{historial.previous_page_number}}">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          {% for num in historial.paginator.page_range %}
+            {% if historial.number == num %}
+              <span class="pagination-tutorial-number pagination-tutorial-current">{{num}}</span>
+            {% elif num > historial.number|add:'-3' and num < historial.number|add:'3' %}
+              <a class="pagination-number" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+          {% endfor %}
+          {% if historial.has_next %}
+            <a class="pagination-tutorial-action" href="?page={{historial.next_page_number}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{historial.paginator.num_pages}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          </div>
+          <hr>
+          
+          <div>
+            <h7>Facturas emitidas hasta la fecha: {{fact_emitidas}}</h7>
+          </div>
+
+          <div>
+            <h7>Facturas pagadas por el colegiado: {{fact_pagadas}}</h7>
+          </div>
+
+          <div>
+            {% if fact_pendientes > 1 %}
+              <h7><p style="color: red;">Facturas pendientes: {{fact_pendientes}}</p></h7>
+
+            {% elif fact_pendientes == 0 %}
+              <h7><p style="color: green;">Facturas pendientes: {{fact_pendientes}}</p></h7>
+
+            {% endif %}
+          </div>
+
+          <div>
+            <h7>Deuda Bs.: {{deuda}}</h7>
+          </div>
+
+{% endblock %}
+    

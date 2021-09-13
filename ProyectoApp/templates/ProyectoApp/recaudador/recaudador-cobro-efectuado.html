@@ -1,0 +1,65 @@
+{% extends 'ProyectoApp/recaudador/recaudador-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+    
+    {% include 'ProyectoApp/messages.html' %}
+
+  <!-- LISTA DE USUARIOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+      
+        <p style="color: green;">¡TRANSACCIÓN EXITOSA!</p>
+
+        <p style="color: red;">NOMBRE DE USUARIO DEL COLEGIADO: {{afiliado.apell_pat}}  {{afiliado.first_name}}</p>
+        <p style="color: red;">CI DEL COLEGIADO: {{afiliado.ci}}</p>
+        <p style="color: red;">MATRICULA DEL COLEGIADO: {{afiliado.matricula}}</p>
+
+        <p>NOMBRE DE USUARIO DEL RECAUDADOR: {{user_log.apell_pat}}   {{user_log.first_name}}</p>
+        <p>CI DEL RECAUDADOR: {{user_log.ci}}</p>
+
+        <p>N° COMPROBANTE: {{aporte.comprobante}}</p>
+        <p>TALONARIO: {{aporte.talonario}}</p>
+        <p>NUMERO DE RECIBO: {{aporte.numero_recibo}}</p>
+        <p>FECHA DE COBRO: {{aporte.fecha_pago}}</p>
+        <p>MES DEL PAGO EFECTUADO:  {{aporte.fecha_id_pago.agno}} -  {{aporte.fecha_id_pago.mes_abreviado}} </p>
+
+
+        <div class="btn-group-vertical" role="group" aria-label="...">
+
+            <li style="list-style:none;">
+              
+              <div>
+                <a href="{% url 'recaudador-cobrar' user_log afiliado.username 1 %}" class="section-btn2 btn btn-default smoothScroll"> Realizar otra recaudación para este colegiado </a>
+              </div>
+
+          </li>
+
+          <br>
+
+          <li style="list-style:none;">
+            
+            <div>
+                <a href="{% url 'generar-pdf' aporte.comprobante %}" class="section-btn2 btn btn-default smoothScroll"> Imprimir comprobante <i class="fa fa-file-pdf-o" aria-hidden="true"></i></a>
+            </div>
+
+          </li>
+          
+          <br>
+          
+          <li class="btn-delete" id="btn-delete" style="list-style:none">
+            
+            <div>
+                <a href="{% url 'enviar-comprobante' aporte.comprobante %}" class="section-btn2 btn btn-default smoothScroll"> Enviar al correo del colegiado <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
+            </div>
+
+          </li>
+
+        </div>
+
+        </div>
+                                            
+    </div>
+          
+  </section>
+{% endblock %} 

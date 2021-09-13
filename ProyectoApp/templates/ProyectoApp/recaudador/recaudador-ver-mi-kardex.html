@@ -1,0 +1,101 @@
+{% extends 'ProyectoApp/recaudador/recaudador-dashboard.html' %}
+{% load static %}
+{% block info %}
+
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Mi Kardex</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+       
+              <div class="full-width panel-content">
+                  
+                  {% include 'ProyectoApp/messages.html' %}
+
+                  <p class="text-center">
+                    {% if not user_log.foto %}
+                       <img class="dashboard" src="{% static 'ProyectoApp/img/foto-estandar.jpg' %}">
+                    {% elif user_log.foto %}
+                       <img class="dashboard" src="{{user_log.foto.url}}">
+                    {% endif %}
+                  </p>
+
+                  <p class="text-center">
+                    <h5 class="text-condensedLight" style="text-align: center;"><strong>Datos e información</strong></h5>
+                  </p>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">1. Nombres:</h7> {{user_log.apell_pat | upper}} {{user_log.apell_mat | upper}} {{user_log.first_name | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">2. Lugar y fecha de nacimiento:</h7> {{user_log.lugar_nac | upper}} | {{user_log.fecha_nac}}
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">3. N° C.I.:</h7> {{user_log.ci}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">4. Estado civil:</h7> {{user_log.est_civil | upper}}
+                  </div>
+
+               
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">5. Universidad donde cursó sus estudios:</h7> {{user_log.univ_estud | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">6. Fecha de matriculación en el Colegio:</h7> {{user_log.fecha_registro}}
+                  </div>
+
+                  
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">7. Cargo que desempeña actualmente:</h7> {{user_log.cargo_actual | upper}}
+                  </div>
+
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">8. Estudios de especialización:</h7> {{user_log.estud_espec | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">9. Dirección oficina:</h7> {{user_log.direc_ofic | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">10. Teléfono oficina:</h7> {{user_log.tel_ofic }}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">11. Dirección domicilio:</h7> {{user_log.direcc | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">12. Teléfono domicilio:</h7> {{user_log.telefono}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">13. Email:</h7> {{user_log.email}}
+                  </div>
+
+                  <hr>
+
+                  <div style="text-align: center;">
+                    <a href="{% url 'recaudador-dashboard' user_log.username %}" class="section-btn2 btn btn-default smoothScroll">Volver a la ventana principal</a>
+                  </div>
+                        
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+{% endblock %} 

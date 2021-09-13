@@ -1,0 +1,581 @@
+{% extends 'ProyectoApp/base.html' %}
+{% load static %}
+
+<head>         
+     {% block title %} <title>Proyecto Aportes Económicos</title> {% endblock %}
+</head>
+          
+{% block content %}
+
+     <body id="top" data-spy="scroll" data-target=".navbar-collapse" data-offset="50">
+
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+               <span class="spinner-rotate"></span>
+          </div>
+     </section>
+
+     <!-- MENU -->
+     <section class="navbar custom-navbar navbar-fixed-top" role="navigation">
+          <div class="container">
+
+               <div class="navbar-header">
+                    <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                         <span class="icon icon-bar"></span>
+                    </button>
+
+                    <!-- lOGO TEXT HERE -->
+                    <a href="#" class="navbar-brand">Proyecto ICAP</a>
+               </div>
+
+               <!-- MENU LINKS -->
+               <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-nav-first">
+                         <li><a href="#top" class="smoothScroll">Inicio</a></li>
+                         <li><a href="#team" class="smoothScroll">Directivos</a></li>
+                         <li><a href="#courses" class="smoothScroll">Tipos de aportes</a></li>
+                         <li><a href="#testimonial" class="smoothScroll">Comentarios</a></li>
+                         <li><a href="#contact" class="smoothScroll">Contacto</a></li>
+                    </ul>
+
+                    <ul class="nav navbar-nav navbar-right">
+                         <li><a href="{% url 'login' %}"> ENTRAR </a></li>
+                    </ul>
+               </div>
+          </div>
+     </section>
+
+     <!-- HOME -->
+     <section id="home">
+          <div class="row">
+
+                    <div class="owl-carousel owl-theme home-slider">
+                         <div class="item item-first" style="background-image: url({% static 'ProyectoApp/img/slider-image1.jpg' %})">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-6 col-sm-12">
+                                             <h1>Gestión de aportes de colegiados</h1>
+                                             <h3>Organiza todas tus aportaciones de una manera sencilla.</h3>
+                                             <a href="#feature" class="section-btn btn btn-default smoothScroll">Descubre más</a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="item item-second" style="background-image: url({% static 'ProyectoApp/img/slider-image2.jpg' %})">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-6 col-sm-12">
+                                             <h1>Revisa tu historial de aportaciones</h1>
+                                             <h3>A través de una interfaz sencilla podrás revisar y comprobar que tu estado de aportes está correcto</h3>
+                                             <a href="#courses" class="section-btn btn btn-default smoothScroll">Ver las tarifas</a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="item item-third" style="background-image: url({% static 'ProyectoApp/img/slider-image3.jpg' %})">
+                              <div class="caption">
+                                   <div class="container">
+                                        <div class="col-md-6 col-sm-12">
+                                             <h1>Comunícate con tus recaudadores</h1>
+                                             <h3>Aquí podrás mantener una comunicación dinámica con todos tus recaudadores<a rel="nofollow" href="#">templatemo</a> page.</h3>
+                                             <a href="#contact" class="section-btn btn btn-default smoothScroll">Contacto</a>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+          </div>
+     </section>
+
+     <!-- FEATURE -->
+     <section id="feature">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="feature-thumb">
+                              <span>01</span>
+                              <h3>Aportes mensuales</h3>
+                              <p>Tarifa única establecida por los directivos. Se cobra una vez cada mes.</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="feature-thumb">
+                              <span>02</span>
+                              <h3>Aportes por certificación</h3>
+                              <p>Montos que representan un tipo de certificación en particular</p>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4">
+                         <div class="feature-thumb">
+                              <span>03</span>
+                              <h3>Aportes por donación</h3>
+                              <p>Donaciones que realizas por inicitiva propia</p>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+     <!-- TEAM -->
+     <section id="team">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2> Directivos <small> Grupo de Directivos ICAP </small></h2>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb">
+                              <div class="team-image">
+                                   <img src="{% static 'ProyectoApp/img/author-image1.jpg' %}" class="img-responsive" alt="">
+                              </div>
+                              <div class="team-info">
+                                   <h3>Mark Wilson</h3>
+                                   <span>I love Teaching</span>
+                              </div>
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-instagram"></a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb">
+                              <div class="team-image">
+                                   <img src="{% static 'ProyectoApp/img/author-image2.jpg' %}" class="img-responsive" alt="">
+                              </div>
+                              <div class="team-info">
+                                   <h3>Catherine</h3>
+                                   <span>Education is the key!</span>
+                              </div>
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-google"></a></li>
+                                   <li><a href="#" class="fa fa-instagram"></a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb">
+                              <div class="team-image">
+                                   <img src="{% static 'ProyectoApp/img/author-image3.jpg' %}" class="img-responsive" alt="">
+                              </div>
+                              <div class="team-info">
+                                   <h3>Jessie Ca</h3>
+                                   <span>I like Online Courses</span>
+                              </div>
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-envelope-o"></a></li>
+                                   <li><a href="#" class="fa fa-linkedin"></a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+                    <div class="col-md-3 col-sm-6">
+                         <div class="team-thumb">
+                              <div class="team-image">
+                                   <img src="{% static 'ProyectoApp/img/author-image4.jpg' %}" class="img-responsive" alt="">
+                              </div>
+                              <div class="team-info">
+                                   <h3>Andrew Berti</h3>
+                                   <span>Learning is fun</span>
+                              </div>
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-google"></a></li>
+                                   <li><a href="#" class="fa fa-behance"></a></li>
+                              </ul>
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>
+
+     <!-- Courses -->
+     <section id="courses">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2>Precios <small>Comprueba los montos establecidos</small></h2>
+                         </div>
+
+                         <div class="owl-carousel owl-theme owl-courses">
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="courses-thumb">
+                                             <div class="courses-top">
+                                                  <div class="courses-image">
+                                                       <img src="{% static 'ProyectoApp/img/courses-image1.jpg' %}" class="img-responsive" alt="">
+                                                  </div>
+                                                  <div class="courses-date">
+                                                       <span><i class="fa fa-calendar"></i> 12 / 7 / 2018</span>
+                                                       <span><i class="fa fa-clock-o"></i> 7 Hours</span>
+                                                  </div>
+                                             </div>
+
+                                             <div class="courses-detail">
+                                                  <h3><a href="#">Social Media Management</a></h3>
+                                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                             </div>
+
+                                             <div class="courses-info">
+                                                  <div class="courses-author">
+                                                       <img src="{% static 'ProyectoApp/img/author-image2.jpg' %}" class="img-responsive" alt="">
+                                                       <span>Mark Wilson</span>
+                                                  </div>
+                                                  <div class="courses-price">
+                                                       <a href="#"><span>USD 25</span></a>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="courses-thumb">
+                                             <div class="courses-top">
+                                                  <div class="courses-image">
+                                                       <img src="{% static 'ProyectoApp/img/courses-image2.jpg' %}" class="img-responsive" alt="">
+                                                  </div>
+                                                  <div class="courses-date">
+                                                       <span><i class="fa fa-calendar"></i> 20 / 7 / 2018</span>
+                                                       <span><i class="fa fa-clock-o"></i> 4.5 Hours</span>
+                                                  </div>
+                                             </div>
+
+                                             <div class="courses-detail">
+                                                  <h3><a href="#">Aportes mensuales</a></h3>
+                                                  <p>Se cobran los 5 primeros días del mes</p>
+                                             </div>
+
+                                             <div class="courses-info">
+                                                  <div class="courses-author">
+                                                       <img src="{% static 'ProyectoApp/img/author-image4.jpg' %}" class="img-responsive" alt="">
+                                                       <span>Jessica</span>
+                                                  </div>
+                                                  <div class="courses-price">
+                                                       <a href="#"><span>Bs 500</span></a>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="courses-thumb">
+                                             <div class="courses-top">
+                                                  <div class="courses-image">
+                                                       <img src="{% static 'ProyectoApp/img/courses-image3.jpg' %}" class="img-responsive" alt="">
+                                                  </div>
+                                                  <div class="courses-date">
+                                                       <span><i class="fa fa-calendar"></i> 15 / 8 / 2018</span>
+                                                       <span><i class="fa fa-clock-o"></i> 6 Hours</span>
+                                                  </div>
+                                             </div>
+
+                                             <div class="courses-detail">
+                                                  <h3><a href="#">Marketing Communication</a></h3>
+                                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                             </div>
+
+                                             <div class="courses-info">
+                                                  <div class="courses-author">
+                                                       <img src="{% static 'ProyectoApp/img/author-image3.jpg' %}" class="img-responsive" alt="">
+                                                       <span>Catherine</span>
+                                                  </div>
+                                                  <div class="courses-price free">
+                                                       <a href="#"><span>Free</span></a>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="courses-thumb">
+                                             <div class="courses-top">
+                                                  <div class="courses-image">
+                                                       <img src="{% static 'ProyectoApp/img/courses-image4.jpg' %}" class="img-responsive" alt="">
+                                                  </div>
+                                                  <div class="courses-date">
+                                                       <span><i class="fa fa-calendar"></i> 10 / 8 / 2018</span>
+                                                       <span><i class="fa fa-clock-o"></i> 8 Hours</span>
+                                                  </div>
+                                             </div>
+
+                                             <div class="courses-detail">
+                                                  <h3><a href="#">Summer Kids</a></h3>
+                                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                             </div>
+
+                                             <div class="courses-info">
+                                                  <div class="courses-author">
+                                                       <img src="{% static 'ProyectoApp/img/author-image1.jpg' %}" class="img-responsive" alt="">
+                                                       <span>Mark Wilson</span>
+                                                  </div>
+                                                  <div class="courses-price">
+                                                       <a href="#"><span>USD 45</span></a>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="courses-thumb">
+                                             <div class="courses-top">
+                                                  <div class="courses-image">
+                                                       <img src="{% static 'ProyectoApp/img/courses-image5.jpg' %}" class="img-responsive" alt="">
+                                                  </div>
+                                                  <div class="courses-date">
+                                                       <span><i class="fa fa-calendar"></i> 5 / 10 / 2018</span>
+                                                       <span><i class="fa fa-clock-o"></i> 10 Hours</span>
+                                                  </div>
+                                             </div>
+
+                                             <div class="courses-detail">
+                                                  <h3><a href="#">Business &amp; Management</a></h3>
+                                                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                             </div>
+
+                                             <div class="courses-info">
+                                                  <div class="courses-author">
+                                                       <img src="{% static 'ProyectoApp/img/author-image2.jpg' %}" class="img-responsive" alt="">
+                                                       <span>Jessica</span>
+                                                  </div>
+                                                  <div class="courses-price free">
+                                                       <a href="#"><span>Free</span></a>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+
+               </div>
+          </div>
+     </section>
+
+     <!-- TESTIMONIAL -->
+     <section id="testimonial">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                         <div class="section-title">
+                              <h2>Comentarios <small>from around the world</small></h2>
+                         </div>
+
+                         <div class="owl-carousel owl-theme owl-client">
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="tst-image">
+                                             <img src="{% static 'ProyectoApp/img/tst-image1.jpg' %}" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="tst-author">
+                                             <h4>Jackson</h4>
+                                             <span>Shopify Developer</span>
+                                        </div>
+                                        <p>You really do help young creative minds to get quality education and professional job search assistance. I’d recommend it to everyone!</p>
+                                        <div class="tst-rating">
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="tst-image">
+                                             <img src="{% static 'ProyectoApp/img/tst-image2.jpg' %}" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="tst-author">
+                                             <h4>Camila</h4>
+                                             <span>Marketing Manager</span>
+                                        </div>
+                                        <p>Trying something new is exciting! Thanks for the amazing law course and the great teacher who was able to make it interesting.</p>
+                                        <div class="tst-rating">
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="tst-image">
+                                             <img src="{% static 'ProyectoApp/img/tst-image3.jpg' %}" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="tst-author">
+                                             <h4>Barbie</h4>
+                                             <span>Art Director</span>
+                                        </div>
+                                        <p>Donec erat libero, blandit vitae arcu eu, lacinia placerat justo. Sed sollicitudin quis felis vitae hendrerit.</p>
+                                        <div class="tst-rating">
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                        </div>
+                                   </div>
+                              </div>
+
+                              <div class="col-md-4 col-sm-4">
+                                   <div class="item">
+                                        <div class="tst-image">
+                                             <img src="{% static 'ProyectoApp/img/tst-image4.jpg' %}" class="img-responsive" alt="">
+                                        </div>
+                                        <div class="tst-author">
+                                             <h4>Andrio</h4>
+                                             <span>Web Developer</span>
+                                        </div>
+                                        <p>Nam eget mi eu ante faucibus viverra nec sed magna. Vivamus viverra sapien ex, elementum varius ex sagittis vel.</p>
+                                        <div class="tst-rating">
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                             <i class="fa fa-star"></i>
+                                        </div>
+                                   </div>
+                              </div>
+
+                         </div>
+
+               </div>
+          </div>
+     </section> 
+
+     <!-- CONTACT -->
+     <section id="contact" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                         <form id="contact-form" role="form" action="" method="post">
+                              <div class="section-title">
+                                   <h2>Contacto<small>Nos encanta comunicarnos contigo. ¡Escríbenos!</small></h2>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12">
+                                   <input type="text" class="form-control" placeholder="Enter full name" name="name" required="">
+                    
+                                   <input type="email" class="form-control" placeholder="Enter email address" name="email" required="">
+
+                                   <textarea class="form-control" rows="6" placeholder="Tell us about your message" name="message" required=""></textarea>
+                              </div>
+
+                              <div class="col-md-4 col-sm-12">
+                                   <input type="submit" class="form-control" name="send message" value="Send Message">
+                              </div>
+
+                         </form>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                         <div class="contact-image">
+                              <img src="{% static 'ProyectoApp/img/contact-image.jpg' %}" class="img-responsive" alt="Smiling Two Girls">
+                         </div>
+                    </div>
+
+               </div>
+          </div>
+     </section>    
+
+     <footer id="footer">
+          <div class="container">
+               <div class="row">
+
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Nuestra sede ICAP</h2>
+                              </div>
+                              <address>
+                                   <p>Av. Arce, La Paz, Bolivia,<br> Integer nisl dui, ABC 12000</p>
+                              </address>
+
+                              <ul class="social-icon">
+                                   <li><a href="#" class="fa fa-facebook-square" attr="facebook icon"></a></li>
+                                   <li><a href="#" class="fa fa-twitter"></a></li>
+                                   <li><a href="#" class="fa fa-instagram"></a></li>
+                              </ul>
+
+                              <div class="copyright-text"> 
+                                   <p>Copyright &copy; 2021 Proyecto</p>
+                                   
+                                   <p>Diseñado por: German Varela</p>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-6">
+                         <div class="footer-info">
+                              <div class="section-title">
+                                   <h2>Información de contacto</h2>
+                              </div>
+                              <address>
+                                   <p>+59 179431676, +59 179431676</p>
+                                   <p><a href="#">danielmiguel_@hotmail.com</a></p>
+                              </address>
+
+                              <div class="footer_menu">
+                                   <h2>IMPORTANTE</h2>
+                                   <ul>
+                                        <li><a href="#">Carreras</a></li>
+                                        <li><a href="#">Profesionales</a></li>
+                                        <li><a href="#">Términos y Condiciones</a></li>
+                                        <li><a href="#">Política de Privacidad</a></li>
+                                   </ul>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-4 col-sm-12">
+                         <div class="footer-info newsletter-form">
+                              <div class="section-title">
+                                   <h2>Suscríbete para recibir notificaciones</h2>
+                              </div>
+                              <div>
+                                   <div class="form-group">
+                                        <form action="#" method="get">
+                                             <input type="email" class="form-control" placeholder="Ingresa tu email" name="email" id="email" required="">
+                                             <input type="submit" class="form-control" name="submit" id="form-submit" value="Enviar">
+                                        </form>
+                                        <span><sup>*</sup>Por favor, no marque los correos como span</span>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    
+               </div>
+          </div>
+     </footer>
+
+{% endblock %} 

@@ -1,0 +1,611 @@
+{% extends 'ProyectoApp/base.html' %}
+{% load static %}
+{% block content %}
+
+<head>         
+     {% block title %} <title>Bienvenido, Directivo</title> {% endblock %}
+</head>
+  
+  <!-- navBar -->
+  <div class="full-width navBar">
+    <div class="full-width navBar-options">
+      <i class="zmdi zmdi-more-vert btn-menu" id="btn-menu"></i>  
+      <i class="fa fa-arrow-circle-left" aria-hidden="true"></i>
+      <div class="mdl-tooltip" for="btn-menu">Ocultar/Mostrar</div>
+      <nav class="navBar-options-list">
+        <ul class="list-unstyle">
+          <li class="btn-Notification" id="notifications">
+          </li>
+          <li class="btn-exits" id="btn-exits">
+            <i class="fa fa-power-off" aria-hidden="true"></i>
+            <div class="mdl-tooltip" for="btn-exits">Salir</div>
+          </li>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+  
+  <!-- navLateral -->
+  <section class="full-width navLateral">
+    <div class="full-width navLateral-bg btn-menu"></div>
+    <div class="full-width navLateral-body">
+      <div class="full-width navLateral-body-logo text-center tittles">
+        <i class="fa fa-user" aria-hidden="true"></i> DIRECTIVO
+      </div>
+      <figure class="full-width" style="height: 77px;">
+        <div class="navLateral-body-cl">
+          <div class="full-width header-well-icon" style="padding-left: 10px;">
+      
+          {% if not user_log.foto %}
+            <img class="dashboard" src="{% static 'ProyectoApp/img/foto-estandar.jpg' %}">
+          {% elif user_log.foto %}
+            <img class="dashboard" src="{{user_log.foto.url}}">
+          {% endif %}
+      
+          </div>
+        </div>
+        <figcaption class="navLateral-body-cr hide-on-tablet">
+          <span>
+            <strong>{{user_log}}</strong><br>
+            <strong><small>{{user_log.email}}</small></strong><br>
+            <strong><small>Matrícula:</strong>{{user_log.matricula}}</small>
+          </span>
+        </figcaption>
+      </figure>
+      
+      <div class="full-width tittles navLateral-body-tittle-menu">
+        <i class="fa fa-server" aria-hidden="true"></i><span class="hide-on-tablet">&nbsp; DASHBOARD</span>
+      </div>
+      
+      <nav class="full-width">
+        <ul class="full-width list-unstyle menu-principal">
+          
+          <!-- SUBMENÚ 1 -->
+          <li class="full-width divider-menu-h"></li>
+            <li class="full-width">
+              <a href="{% url 'directivo-info' user_log %}" class="full-width">
+                <div class="navLateral-body-cl" title="INFORMACIÓN">
+                  <i class="fa fa-inbox" aria-hidden="true"></i>
+                </div>
+                <div class="navLateral-body-cr hide-on-tablet">
+                  INFORMACIÓN
+                </div>
+              </a>
+            </li>
+
+          <!-- SUBMENÚ 2 -->
+          <li class="full-width divider-menu-h"></li>
+            <li class="full-width">
+              <a href="#!" class="full-width btn-subMenu">
+                <div class="navLateral-body-cl" title="ROLES">
+                  <i class="fa fa-user-o" aria-hidden="true"></i>
+                </div>
+                <div class="navLateral-body-cr hide-on-tablet">
+                  ROLES
+                </div>
+                <span class="zmdi zmdi-chevron-left"></span> <!-- flecha -->
+              </a>
+            
+              <ul class="full-width menu-principal sub-menu-options">
+                
+                <li class="full-width">
+                  
+                  <a href="#!" class="full-width btn-subMenu" style="background-color: #95b4ca;">
+                    <div class="navLateral-body-cl" title="Recaudadores">
+                      <i class="fa fa-users" aria-hidden="true"></i>
+                    </div>
+                    <div class="navLateral-body-cr hide-on-tablet">
+                      Recaudadores
+                    </div>
+                    <span class="zmdi zmdi-chevron-left"></span>
+                  </a>
+
+                    <ul class="full-width menu-principal sub-menu-options">
+                      
+                      <li class="full-width">
+                        <a href="{% url 'directivo-dashboard' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Ver recaudadores">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Ver recaudadores
+                          </div>
+                        </a>
+                      </li>
+                    
+                    <!-- PEGAR AQUÍ OTRAS OPCIONES PARA RECAUDADORES -->
+                      <li class="full-width">
+                        <a href="{% url 'directivo-registrar-recaudador' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Registrar recaudador">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Registrar recaudador
+                          </div>
+                        </a>
+                      </li>
+                
+                    </ul>
+                  </li>
+
+                <li class="full-width">
+                  
+                  <a href="#!" class="full-width btn-subMenu" style="background-color: #b7d2e5;">
+                    <div class="navLateral-body-cl" title="Colegiados">
+                      <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="navLateral-body-cr hide-on-tablet">
+                      Colegiados
+                    </div>
+                    <span class="zmdi zmdi-chevron-left"></span>
+                  </a>
+
+                    <ul class="full-width menu-principal sub-menu-options">
+                      
+                      <li class="full-width">
+                        <a href="{% url 'directivo-dashboard-afiliados' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Ver todos los colegiados">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Ver todos los colegiados
+                          </div>
+                        </a>
+                      </li>
+                      
+                      <li class="full-width">
+                        <a href="{% url 'directivo-dashboard-afiliados-desh' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Ver colegiados INACTIVOS">
+                            <i class="fa fa-times-circle-o" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Ver colegiados INACTIVOS
+                          </div>
+                        </a>
+                      </li>
+
+                    <!-- PEGAR AQUÍ OTRAS OPCIONES PARA RECAUDADORES -->
+                      <li class="full-width">
+                        <a href="{% url 'directivo-tipo-afiliado' user_log %}" class="full-width">
+                        <!-- <a href="{% url 'directivo-registrar-afiliado' user_log %}" class="full-width"> -->
+                          <div class="navLateral-body-cl" title="Registrar colegiado">
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Registrar colegiado
+                          </div>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+                <li class="full-width">
+                  
+                  <a href="#!" class="full-width btn-subMenu" style="background-color: #d4e9f9;">
+                    <div class="navLateral-body-cl" title="Buscar colegiado">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                    <div class="navLateral-body-cr hide-on-tablet">
+                      Buscar colegiado
+                    </div>
+                    <span class="zmdi zmdi-chevron-left"></span>
+                  </a>
+
+                    <ul class="full-width menu-principal sub-menu-options">
+                      
+                      <li class="full-width">
+                        <a href="{% url 'directivo-filtrar-ci' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Buscar C.I.">
+                            <i class="fa fa-id-card-o" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            C.I.
+                          </div>
+                        </a>
+                      </li>
+                      
+                      <li class="full-width">
+                        <a href="{% url 'directivo-filtrar-mat' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Buscar N° matrícula ICAP">
+                            <i class="fa fa-address-card" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            N° matrícula ICAP
+                          </div>
+                        </a>
+                      </li>
+
+                    <!-- PEGAR AQUÍ OTRAS OPCIONES PARA RECAUDADORES -->
+                      <li class="full-width">
+                        <a href="{% url 'directivo-filtrar-apell-pat' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Buscar apellido paterno">
+                            <i class="fa fa-address-book" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Apellido paterno
+                          </div>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>  
+
+              </ul> <!-- CIERRE DEL SUBMENÚ 2 -->
+          </li>
+
+          <!-- SUBMENÚ 3 -->
+          <li class="full-width divider-menu-h"></li>
+            <li class="full-width">
+              <a href="#!" class="full-width btn-subMenu">
+                <div class="navLateral-body-cl" title="COBROS">
+                  <i class="fa fa-money" aria-hidden="true"></i>
+                </div>
+                <div class="navLateral-body-cr hide-on-tablet">
+                  COBROS
+                </div>
+                <span class="zmdi zmdi-chevron-left"></span>
+              </a>
+            
+                <ul class="full-width menu-principal sub-menu-options">
+
+                  <li class="full-width">
+                  
+                  <a href="#!" class="full-width btn-subMenu" style="background-color: #95b4ca;">
+                    <div class="navLateral-body-cl" title="Buscar cobro">
+                      <i class="fa fa-search" aria-hidden="true"></i>
+                    </div>
+                    <div class="navLateral-body-cr hide-on-tablet">
+                      Buscar cobro
+                    </div>
+                    <span class="zmdi zmdi-chevron-left"></span>
+                  </a>
+
+                    <ul class="full-width menu-principal sub-menu-options">
+                      
+                      <li class="full-width">
+                        <a href="{% url 'directivo-filtrar-comp' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Buscar N° comprobante">
+                            <i class="fa fa-sticky-note-o" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            N° comprobante
+                          </div>
+                        </a>
+                      </li>
+                      
+                      <li class="full-width">
+                        <a href="{% url 'directivo-filtrar-talon' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Buscar N° talonario">
+                            <i class="fa fa-book" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            N° talonario
+                          </div>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+                </ul>
+            </li>
+          </li>
+
+          <!-- SUBMENÚ 4 -->
+          <li class="full-width divider-menu-h"></li>
+            <li class="full-width">
+              <a href="#!" class="full-width btn-subMenu">
+                <div class="navLateral-body-cl" title="REPORTES">
+                  <i class="fa fa-pencil-square" aria-hidden="true"></i>
+                </div>
+                <div class="navLateral-body-cr hide-on-tablet">
+                  REPORTES
+                </div>
+                <span class="zmdi zmdi-chevron-left"></span>
+              </a>
+            
+              <ul class="full-width menu-principal sub-menu-options">
+                
+                <li class="full-width">
+                  
+                  <a href="#!" class="full-width btn-subMenu" style="background-color: #95b4ca;">
+                    <div class="navLateral-body-cl" title="Reporte recaudadores">
+                      <i class="fa fa-users" aria-hidden="true"></i>
+                    </div>
+                    <div class="navLateral-body-cr hide-on-tablet">
+                      Recaudadores
+                    </div>
+                    <span class="zmdi zmdi-chevron-left"></span>
+                  </a>
+
+                    <ul class="full-width menu-principal sub-menu-options">
+                      
+                      <li class="full-width">
+                        <a href="{% url 'recaudado-este-mes' user_log 'AMU' %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Recaudado este mes">
+                            <i class="fa fa-money" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Recaudado este mes
+                          </div>
+                        </a>
+                      </li>
+                    
+                    <!-- PEGAR AQUÍ OTRAS OPCIONES PARA RECAUDADORES -->
+                
+                    </ul>
+                  </li>
+
+                <li class="full-width">
+                  
+                  <a href="#!" class="full-width btn-subMenu" style="background-color: #b7d2e5;">
+                    <div class="navLateral-body-cl" title="Reporte colegiados">
+                      <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    </div>
+                    <div class="navLateral-body-cr hide-on-tablet">
+                      Colegiados
+                    </div>
+                    <span class="zmdi zmdi-chevron-left"></span>
+                  </a>
+
+                    <ul class="full-width menu-principal sub-menu-options">
+                      
+                      <li class="full-width">
+                        <a href="{% url 'directivo-dashboard-afiliados-deudas' user_log %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Colegiados deudas pendientes">
+                            <i class="fa fa-info" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Deudas pendientes
+                          </div>
+                        </a>
+                      </li>
+                      
+                    <!-- PEGAR AQUÍ OTRAS OPCIONES PARA ColegiadosS -->
+                      
+                    </ul>
+                  </li>
+
+                <li class="full-width">
+                  
+                  <a href="#!" class="full-width btn-subMenu" style="background-color: #d4e9f9;">
+                    <div class="navLateral-body-cl" title="Reporte General">
+                      <i class="fa fa-globe" aria-hidden="true"></i>
+                    </div>
+                    <div class="navLateral-body-cr hide-on-tablet">
+                      General
+                    </div>
+                    <span class="zmdi zmdi-chevron-left"></span>
+                  </a>
+
+                    <ul class="full-width menu-principal sub-menu-options">
+                      
+                      <li class="full-width">
+                        <a href="{% url 'reporte-anual' user_log 'AMU' %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Reporte Anual">
+                            <i class="fa fa-check-square" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Reporte anual
+                          </div>
+                        </a>
+                      </li>
+                      
+                    <!-- PEGAR AQUÍ OTRAS OPCIONES PARA AFILIADOS -->
+                      <li class="full-width">
+                        <a href="{% url 'reporte-fechas' user_log 'AMU' %}" class="full-width">
+                          <div class="navLateral-body-cl" title="Reporte entre fechas">
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                          </div>
+                          <div class="navLateral-body-cr hide-on-tablet">
+                            Reporte entre fechas
+                          </div>
+                        </a>
+                      </li>
+
+                    </ul>
+                  </li>
+
+              </ul> <!-- CIERRE DEL SUBMENÚ 4 -->
+          </li>
+          
+          <!-- SUBMENÚ 5 -->
+          <li class="full-width divider-menu-h"></li>
+            <li class="full-width">
+              <a href="#!" class="full-width btn-subMenu">
+                <div class="navLateral-body-cl" title="ACTUALIZAR">
+                  <i class="fa fa-cog" aria-hidden="true"></i>
+                </div>
+                <div class="navLateral-body-cr hide-on-tablet">
+                  ACTUALIZAR
+                </div>
+                <span class="zmdi zmdi-chevron-left"></span>
+              </a>
+            
+                <ul class="full-width menu-principal sub-menu-options">
+
+                  <li class="full-width">
+                    <a href="{% url 'directivo-mod-datos' user_log %}" class="full-width">
+                      <div class="navLateral-body-cl" title="Actualizar mis datos">
+                        <i class="fa fa-info" aria-hidden="true"></i>
+                      </div>
+                      <div class="navLateral-body-cr hide-on-tablet">
+                       Mis datos
+                      </div>
+                    </a>
+                  </li>
+                  
+                  <li class="full-width">
+                    <a href="{% url 'directivo-mod-clave' user_log %}" class="full-width">
+                      <div class="navLateral-body-cl" title="Actualizar mi contraseña">
+                        <i class="fa fa-key" aria-hidden="true"></i>
+                      </div>
+                      <div class="navLateral-body-cr hide-on-tablet">
+                        Mi contraseña 
+                      </div>
+                    </a>
+                  </li> 
+
+                  <li class="full-width">
+                    <a href="{% url 'directivo-mod-foto' user_log %}" class="full-width">
+                      <div class="navLateral-body-cl" title="Actualizar mi foto">
+                        <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                      </div>
+                      <div class="navLateral-body-cr hide-on-tablet">
+                        Mi foto 
+                      </div>
+                    </a>
+                  </li>   
+
+                </ul>
+            </li>
+          </li>
+                
+        </ul> <!-- CIERRE DE SUBMENÚS DEL DASHBOARD -->
+      </nav>
+    </div>
+        
+  </section>
+  <!-- pageContent -->
+  <section class="full-width pageContent">
+    <section class="full-width header-well">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center;">
+        
+          <strong style="color: red"><u>MIS DATOS</u></strong><br>
+          <strong>Apellido (P):</strong> {{user_log.apell_pat | upper}} / <strong>Apellido (M):</strong> {{user_log.apell_mat | upper}} / <strong>Nombre:</strong> {{user_log.first_name | upper}} / <strong>C.I.:</strong> {{user_log.ci}}<br>
+          <strong>Teléfono:</strong> {{user_log.telefono}} / <strong>Celular:</strong> {{user_log.celular}}<br>
+          <strong>Dirección:</strong> {{user_log.direcc | upper}} <br> <br>
+          <div>
+            <a href="{% url 'directivo-ver-mi-kardex' user_log.username %}" class="section-btn2 btn btn-default smoothScroll">Ver mi kardex completo</a>
+          </div>
+      </div>
+    </section>
+    
+    {% block info %}
+
+    {% include 'ProyectoApp/messages.html' %}
+    <!-- LISTA DE AFILIADOS -->
+    <div class="full-width divider-menu-h"></div>
+    <div class="mdl-grid">
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+        <!-- ROJO #e60000 rgba(230, 0, 0, 1) -->
+        <!-- AZÚL #025895 rgba(2, 88, 149, 1)-->
+         <h7 style="text-align: center; color: #ffcc00;"><strong> LISTA DE RECAUDADORES </strong></h7>            
+      </div>
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" style="overflow-x:auto;">
+        <table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp full-width table-responsive">
+          <thead>
+            <tr>
+              <!-- <th class="mdl-data-table__cell--non-numeric" style="text-align: center;">MATRÍCULA</th>-->
+              <th style="text-align: center;">CI</th>
+              <th style="text-align: center;">DETALLES</th>
+              <th style="text-align: center;">NOMBRE</th>
+              <th style="text-align: center;">ESTADO</th>
+              <th style="text-align: center;">FECHA MATRICULACIÓN</th>
+              <th style="text-align: center;">VER KARDEX</th>
+              <th style="text-align: center;">IMP. KARDEX</th>
+              <th style="text-align: center;">ACTUALIZAR</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr> 
+              {% for recaudador in recaudadores %} 
+              
+              <!--<td class="mdl-data-table__cell--non-numeric" style="text-align: center;">{{recaudador.matricula}}</td>-->
+              <td style="text-align: center;">{{recaudador.ci}}</td>
+              <td style="text-align: center;" title="Ver detalles del recaudador"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'directivo-ver-usuario' user_log recaudador.username %}"><i class="fa fa-eye" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;">{{recaudador.apell_pat | upper}} {{recaudador.apell_mat | upper}} {{recaudador.first_name | upper}}</td>
+              
+              {% if recaudador.estado_usuario == True %}
+
+                <td style="text-align: center;">ACTIVO</td>
+              {% elif recaudador.estado_usuario == False %}
+
+                <td style="text-align: center;">INACTIVO</td>
+
+              {% endif %}
+
+              <td style="text-align: center;">{{recaudador.fecha_registro}}</td>
+              <td style="text-align: center;" title="Ver kardex"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'directivo-ver-kardex' user_log.username recaudador.username %}"><i class="fa fa-file-text" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;" title="Imprimir kardex"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'imprimir-kardex' recaudador.username %}"><i class="fa fa-print" aria-hidden="true"></i></button></td>
+              <td style="text-align: center;" title="Actualizar datos del recaudador"><a class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect" href="{% url 'directivo-act-datos' user_log recaudador.username %}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button></td>
+
+            </tr>
+              {% endfor %}
+          </tbody>
+        </table>
+
+      </div>
+
+      <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop" >
+
+          <!-- PAGINACIÓN-->
+          <div class="pagination-tutorial">
+          {% if recaudadores.has_previous %}
+            <a class="pagination-tutorial-action" href="?page=1">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{recaudadores.previous_page_number}}">
+              <i class="fa fa-arrow-left" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          {% for num in recaudadores.paginator.page_range %}
+            {% if recaudadores.number == num %}
+              <span class="pagination-tutorial-number pagination-tutorial-current">{{num}}</span>
+            {% elif num > recaudadores.number|add:'-3' and num < recaudadores.number|add:'3' %}
+              <a class="pagination-number" href="?page={{num}}">{{num}}</a>
+            {% endif %}
+          {% endfor %}
+          {% if recaudadores.has_next %}
+            <a class="pagination-tutorial-action" href="?page={{recaudadores.next_page_number}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a class="pagination-tutorial-action" href="?page={{recaudadores.paginator.num_pages}}">
+              <i class="fa fa-arrow-right" aria-hidden="true"></i>
+            </a>
+          {% endif %}
+          </div>
+        
+    {% endblock %}
+    
+  </section>
+
+  <!-- SCRIPTS -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/jquery-1.11.2.min.js"><\/script>')</script>
+  <script src="{% static 'ProyectoApp/vendor/js/material.min.js' %}" ></script>
+  <script src="{% static 'ProyectoApp/vendor/js/sweetalert2.min.js' %}" ></script>
+  <script src="{% static 'ProyectoApp/vendor/js/jquery.mCustomScrollbar.concat.min.js' %}" ></script>
+  <script src="{% static 'ProyectoApp/vendor/js/main.js' %}" ></script>
+
+  <link rel="stylesheet" href="{% static 'ProyectoApp/vendor/css/normalize.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoApp/vendor/css/sweetalert2.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoApp/vendor/css/material.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoApp/vendor/css/material-design-iconic-font.min.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoApp/vendor/css/jquery.mCustomScrollbar.css' %}">
+  <link rel="stylesheet" href="{% static 'ProyectoApp/vendor/css/main.css' %}">
+
+  <script>
+    $(document).ready(function(){
+      $('.btn-exits').on('click', function(){
+        swal({
+          title: '¿Estás seguro (a) de querer salir?',
+        text: "Deberá volver a ingresar sus credenciales para acceder a ICAP",
+          type: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Sí, estoy seguro',
+          cancelButtonText: 'Cancelar',
+          closeOnConfirm: false
+      },
+      function(isConfirm) {
+          if (isConfirm) {
+            window.location="{% url 'logout' %}"; 
+          }
+      });
+      });
+    });
+  </script>
+
+{% endblock %} 

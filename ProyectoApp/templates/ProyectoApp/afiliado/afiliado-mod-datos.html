@@ -1,0 +1,96 @@
+{% extends 'ProyectoApp/afiliado/afiliado-dashboard.html' %}
+<!--{% load static %}-->
+{% block info %}
+
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Modificar</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+              <div class="full-width panel-tittle bg-primary text-center tittles">
+                Mis datos
+              </div>
+              <div class="full-width panel-content">
+                
+                <form method="post" action="">
+                {% csrf_token%}
+                  <h5 class="text-condensedLight">Datos</h5>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.first_name}}
+                    <label class="mdl-textfield__label" for="DNIClient">Nombre</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.apell_pat}}
+                    <label class="mdl-textfield__label" for="DNIClient">Paterno</label>
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.apell_mat}}
+                    <label class="mdl-textfield__label" for="DNIClient">Materno</label> 
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.email}}
+                    <label class="mdl-textfield__label" for="emailClient">Email</label>
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.ci}}
+                    <label class="mdl-textfield__label" for="emailClient">CI</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.telefono}}
+                    <label class="mdl-textfield__label" for="NameClient">Teléfono</label>
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.celular}}
+                    <label class="mdl-textfield__label" for="LastNameClient">Celular</label>
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    {{form.direcc}}
+                    <label class="mdl-textfield__label" for="LastNameClient">Dirección</label>
+                  </div>
+                  
+                  <div style="text-align: center;">
+                    
+                    <div class="btn-group" role="group" aria-label="...">
+                        
+                        <button type="button" onclick="cancelar()" class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-registrar#" title="Cancelar" style="color: red;">
+                          <i class="fa fa-ban" aria-hidden="true"></i>
+                        </button>
+                        
+                        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored bg-primary" id="btn-addClient">
+                          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+                        </button>
+                        <div class="mdl-tooltip" for="btn-addClient">Actualizar</div>
+                      
+                    </div>
+                  
+                  </div>
+             
+                </form>
+              
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <script>
+  function cancelar() {
+    window.location="{% url 'afiliado-dashboard' user_log.username %}";
+  }
+  </script>
+
+{% endblock %} 

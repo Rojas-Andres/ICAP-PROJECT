@@ -1,0 +1,125 @@
+{% extends 'ProyectoApp/directivo/directivo-dashboard.html' %}
+{% load static %}
+{% block info %}
+
+  <div class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect">
+      <div class="mdl-tabs__tab-bar">
+        <a href="#tabNewClient" class="mdl-tabs__tab is-active">Kardex</a>
+      </div>
+      <div class="mdl-tabs__panel is-active" id="tabNewClient">
+        <div class="mdl-grid">
+          <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--8-col-desktop mdl-cell--2-offset-desktop">
+            <div class="full-width panel mdl-shadow--2dp">
+              {% if tipo_usuario == 'Recaudador' %}  
+           
+              {% else %}
+
+              <div class="full-width panel-tittle bg-primary text-center tittles" style="text-align: center; border: 3.5px outset #cca300; border-radius: 15px; text-align: center; background: rgb(2,0,36); background: linear-gradient(-15deg, rgba(145,145,175,1) 0%, rgba(2, 88, 149, 1) 5%, rgba(230, 0, 0, 1) 100%)">
+              
+                Matrícula ICAP N°: {{user_filt.matricula}} <br>
+              </div>
+            
+              {% endif %}
+              <div class="full-width panel-content">
+                  
+                  {% include 'ProyectoApp/messages.html' %}
+
+                  <p class="text-center">
+                    {% if not user_filt.foto %}
+                       <img class="dashboard" src="{% static 'ProyectoApp/img/foto-estandar.jpg' %}">
+                    {% elif user_filt.foto %}
+                       <img class="dashboard" src="{{user_filt.foto.url}}">
+                    {% endif %}
+                  </p>
+
+                  <p class="text-center">
+                    <h5 class="text-condensedLight" style="text-align: center;"><strong>Datos e información</strong></h5>
+                  </p>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">1. Nombres:</h7> {{user_filt.apell_pat | upper}} {{user_filt.apell_mat | upper}} {{user_filt.first_name | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">2. Lugar y fecha de nacimiento:</h7> {{user_filt.lugar_nac | upper}} | {{user_filt.fecha_nac}}
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">3. N° C.I.:</h7> {{user_filt.ci}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">4. Estado civil:</h7> {{user_filt.est_civil | upper}}
+                  </div>
+
+               
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">5. Universidad donde cursó sus estudios:</h7> {{user_filt.univ_estud | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">6. Fecha de matriculación en el Colegio:</h7> {{user_filt.fecha_registro}}
+                  </div>
+
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">7. Cargo que desempeña actualmente:</h7> {{user_filt.cargo_actual | upper}}
+                  </div>
+
+                
+             
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">8. Estudios de especialización:</h7> {{user_filt.estud_espec | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">9. Dirección oficina:</h7> {{user_filt.direc_ofic | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">10. Teléfono oficina:</h7> {{user_filt.tel_ofic }}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">11. Dirección domicilio:</h7> {{user_filt.direcc | upper}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">12. Teléfono domicilio:</h7> {{user_filt.telefono}}
+                  </div>
+
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">13. Email:</h7> {{user_filt.email}}
+                  </div>
+                  
+                  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="border-style: groove;">
+                    <h7 style="color: #C11010">14. Observaciones:</h7> {{user_filt.observ}}
+                  </div>
+
+                  <hr>
+
+                  {% if tipo_usuario == 'Recaudador' %}
+
+                    <div style="text-align: center;">
+                      <a href="{% url 'directivo-historial-recaudador' user_log user_filt.username 'AMU' 'TOTAL' None None %}" class="section-btn2 btn btn-default smoothScroll">Ver historial de cuotas</a>
+                    </div>
+     
+                  {% elif tipo_usuario == 'Afiliado' %}
+
+                    <div style="text-align: center;">
+                      <a href="{% url 'directivo-historial-afiliado' user_log user_filt.username 'AMU' 'TOTAL' None None %}" class="section-btn2 btn btn-default smoothScroll">Ver historial de cuotas</a>
+                    </div>
+
+                  {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+{% endblock %} 

@@ -1,0 +1,262 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+	<head>
+		{% load static %}
+		<title>KARDEX</title>
+		
+		<style type="text/css">
+			body {
+				font-weight: 200;
+				font-size: 12px;
+			}
+
+			.header {
+				font-size: 18px;
+				font-weight: 100;
+				font-family: "Times New Roman", Times, serif;
+				text-align: center;
+				color: black;
+			}
+
+			.title {
+				font-size: 11px;
+				font-weight: 100;
+				padding: 10px 20px 0px 20px;
+			}
+
+			.title span {
+				color: #007cae;
+			}
+
+			.details {
+				padding: 10px 20px 0px 20px;
+				text-align: left !important;
+			}
+
+			.hrItem {
+				border: none;
+				height: 0.5px;
+				color: #333;
+				background-color: #fff;
+			}
+
+			table, th, td {
+  				border: 1px solid black;
+  				border-collapse: collapse;
+			}
+			
+			th, td {
+				padding: 5px;
+			}
+			
+			th {
+				text-align: left;
+			}
+
+			ul {
+  				list-style-type: none;
+  				margin: 0;
+  				padding: 10px;
+			}
+
+			li {
+  				display: inline;
+			}
+
+		</style>
+	</head>
+
+	<body>
+		<div class="wrapper">
+			<div class="header">
+				
+				<ul>
+  					<li>
+  						<img style="padding-left: 20px;" src="data:image/png;base64, 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
+						2A4PdNRO6tgWapef2h//2Q==" alt="Red dot"/>|
+					</li>
+  					
+  					<li>
+  						Ilustre Colegio de Abogados - Potosí, Bolívia
+  					</li>
+  					
+  					<li>
+  						|<img src="data:image/png;base64, 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
+						2A4PdNRO6tgWapef2h//2Q==" alt="Red dot" />
+					</li>
+		  
+				</ul>
+
+			</div>
+		</div>
+
+		<div>
+			
+			<div class="header">
+				<h7> <p class="title"> KARDEX </p> </h7>
+			</div>
+			
+		</div>
+
+		<div class="details">
+			<table style="width:100%">
+				<tr>
+			    	<th>Nombres y apellidos: <p class="title">German Varela</p></th>
+				    <th>Lugar y fecha de nacimiento: <p class="title">Potosí 15-05-1997</p></th> 
+				    <th>N° C.I.: <p class="title">25829264</p></th>
+			  	</tr>
+			  	
+			  	<tr>
+				    <th>Universidad donde cursó sus estudios: <p class="title">Universidad de Carabobo</p></th>
+				    <th>Fecha de exámen de Tesís, Grado o Corte: <p class="title">24-03-2021</p></th> 
+				    <th>Fecha y Universidad que le extendió el título de Abog.: <p class="title">24-03-1997 Universidad de Carabobo de la Reública bolivariana de Venezuela Letra de Juan Viecente Salas</p></th>
+			  	</tr>
+			  
+			  	<tr>
+				    <th>Fecha de matriculación en el colegio: <p class="title">01-01-21</p></th>
+				    <th>Cargos desempeñados en empresas privadas: <p class="title">Constitucionalista, penal, DDHH</p></th> 
+			  	</tr>
+			  
+			  	<tr>
+				    <th>Cargo que desempeña actualmente: <p class="title">Abog. Defensor</p></th> 
+				    <th>Especialidad en el ejer. del Derecho: <p class="title">Abog. Defensor</p></th>
+				    <th>Producciones jurídicas: <p class="title">El buen Abogado, Procesos básicos del abogado defensor y Misión Bolívia</p></th>
+			  	</tr>
+			  
+			  	<tr>
+				    <th>Estudios de especialización: <p class="title">Master en Ciencias Políticas- Massachusets</p></th> 
+			  	</tr>
+			  
+			  	<tr>
+				    <th>Dirección oficina: <p class="title">Calle Arce 603</p></th>
+				    <th>Teléfono oficina: <p class="title">782641211244</p></th>
+			  	</tr>
+			  
+			  	<tr>
+				    <th>Casilla: <p class="title">German Varela</p></th>
+				    <th>Dirección de domicilio: <p class="title">Potosí, Av. Arce</p></th> 
+				    <th>Teléfono domicilio: <p class="title">12312312312</p></th>
+				    <th>Email: <p class="title" style="font-size: 10px">gvarela.personal@gmail.com</p></th>
+			  	</tr>
+  
+			</table>
+			
+			<br>
+
+			<div>
+				
+				Sello del Colegio _______________
+
+			</div>
+
+		</div>
+		
+	</body>
+</html>
