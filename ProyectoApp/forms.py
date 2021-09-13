@@ -147,6 +147,7 @@ class FormularioRegistroUsuario(forms.ModelForm):
 
 			'fecha_nac': forms.DateInput(
 				attrs={ 'class': 'mdl-textfield__input' }
+				,'type':'date',
 			),
 
 
@@ -163,7 +164,7 @@ class FormularioRegistroUsuario(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -180,7 +181,7 @@ class FormularioRegistroUsuario(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -189,7 +190,7 @@ class FormularioRegistroUsuario(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -429,7 +430,7 @@ class FormularioRegistroUsuario(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': timezone.now()
-					
+					,'type':'date',
 				}
 			),
 
@@ -516,7 +517,8 @@ class FormularioRegistroAfiliadoAntiguo(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					'placeholder': 'dd/mm/aaaa'				
+					'placeholder': 'dd/mm/aaaa',
+					'type':'date',			
 				}
 			),
 
@@ -534,7 +536,7 @@ class FormularioRegistroAfiliadoAntiguo(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -551,7 +553,7 @@ class FormularioRegistroAfiliadoAntiguo(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -560,7 +562,7 @@ class FormularioRegistroAfiliadoAntiguo(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -798,7 +800,7 @@ class FormularioRegistroAfiliadoAntiguo(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': timezone.now()
-					
+					,'type':'date',
 				}
 			),
 
@@ -888,6 +890,7 @@ class FormularioModificarDatos(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'				
+					,'type':'date',
 				}
 			),
 
@@ -913,7 +916,7 @@ class FormularioModificarDatos(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -930,7 +933,7 @@ class FormularioModificarDatos(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -939,7 +942,7 @@ class FormularioModificarDatos(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': 'dd/mm/aaaa'
-					
+					,'type':'date',
 				}
 			),
 
@@ -1321,7 +1324,7 @@ class FormularioCobrarAM(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': timezone.now()
-					
+					,'type':'date',
 				}
 			),
 
@@ -1345,7 +1348,7 @@ class FormularioCobrarAC(forms.ModelForm):
 				attrs = {
 					'class': 'mdl-textfield__input',
 					'placeholder': timezone.now()
-					
+					,'type':'date',
 				}
 			),
 
@@ -1368,7 +1371,8 @@ class FormularioCobrarAD(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					'placeholder': timezone.now()
+					'placeholder': timezone.now(),
+					'type':'date',
 					
 				}
 			),
@@ -1522,8 +1526,8 @@ class FormularioActualizarDatos(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					'placeholder': 'dd/mm/aaaa'
-					
+					'placeholder': 'dd/mm/aaaa',
+					'type':'date',
 				}
 			),
 
@@ -1531,8 +1535,8 @@ class FormularioActualizarDatos(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					'placeholder': 'dd/mm/aaaa'
-					
+					'placeholder': 'dd/mm/aaaa',
+					'type':'date',
 				}
 			),
 
@@ -1540,7 +1544,8 @@ class FormularioActualizarDatos(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					'placeholder': 'dd/mm/aaaa'
+					'placeholder': 'dd/mm/aaaa',
+					'type':'date',
 					
 				}
 			),
