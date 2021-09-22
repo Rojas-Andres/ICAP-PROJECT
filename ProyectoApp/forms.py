@@ -146,8 +146,8 @@ class FormularioRegistroUsuario(forms.ModelForm):
 			),
 
 			'fecha_nac': forms.DateInput(
-				attrs={ 'class': 'mdl-textfield__input' }
-				,'type':'date',
+				attrs={ 'class': 'mdl-textfield__input','type':'date', }
+				
 			),
 
 
