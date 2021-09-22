@@ -35,7 +35,7 @@ EMAIL_PORT = 465
 SECRET_KEY = '2&5+#3u5u)pyb1yq3=g^)#l03s*u^e$@q*87nq@s(1(3de6agl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True  # False para fase de producción
+DEBUG = False  # False para fase de producción
 
 if DEBUG is True:
     ALLOWED_HOSTS = [
