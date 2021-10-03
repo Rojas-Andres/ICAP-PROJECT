@@ -487,11 +487,17 @@ def cal_deuda_afiliado(request, user_log, tam, th, start_date, end_date):
 	return context  
 
 def cal_deuda_afiliado_simple(user_filt):
-
+	
+	
 	user_filt = CustomUser.objects.get(username=user_filt)  # Afiliado
 	fact_ami = AporteMensual.objects.get(aporte_mensual_deno='AMI')
 	fact_amu = AporteMensual.objects.get(aporte_mensual_deno='AMU')
-	
+	historial = AporteAfiliado.objects.filter(
+								afiliado=user_filt.id,
+								aporte_mensual_afil=fact_amu.id
+								).order_by('-fecha_pago')
+
+
 	aportes_ami = AporteAfiliado.objects.filter(
 						afiliado=user_filt.id,
 						aporte_mensual_afil=fact_ami.id
@@ -501,24 +507,53 @@ def cal_deuda_afiliado_simple(user_filt):
 						afiliado=user_filt.id,
 						aporte_mensual_afil=fact_amu.id
 						).order_by('-fecha_pago')
-
+	cant =1
+	fecha_inicio = user_filt.fecha_registro
+	querie  =CustomUser.objects.filter(username=user_filt).first()
+	print("ESTE ES EL TIPO DE DATOS DE FECHA INICIO")
+	print(type(fecha_inicio))
 	if len(aportes_ami) == 0:
-		
 		# APORTES ACTUALES
-		fecha_inicio = user_filt.fecha_registro
+		if len(historial) == 0:
+			#El afiliado no tiene ninguna factura pagada
+			# Obtenemos la fecha de registro
+			d1 = datetime.date(querie.fecha_registro.year, querie.fecha_registro.month, 10)
+			#Obtenemos el dia de hoy
+			today = date.today()
+			d2 = datetime.date(today.year, today.month, 10)
+			#Sacamos los meses de diferencia
+			months = rrule.rrule(rrule.MONTHLY, dtstart=d1, until=d2).count()
+			#Obtenemos la fecha de registro de la tabla fechas que hemos creado
+			fecha = Fechas.objects.filter(agno=querie.fecha_registro.year,mes = querie.fecha_registro.month).first()
+			#Sacamos todas las fechas a pagar
+			fechas = [fecha.id+i for i in range(cant)]
+			#Las filtramos en fechas para saber que meses va a pagar
+			fechas_pagar = Fechas.objects.filter(
+				id__in = fechas
+			)
+		else:
+			#Aca debe de ir cuando el afiliado ya tenga facturas pagadas que debe de hacerse
+			fecha = Fechas.objects.filter(agno=querie.fecha_registro.year,mes = querie.fecha_registro.month).first()
+			#Ultima fecha pagada 
+			val = fecha.id + len(historial)
+			# Fechas a pagar
+			fechas = [val+i for i in range(cant)]
+			fechas_pagar = Fechas.objects.filter(
+				id__in = fechas
+			)
+			# Fechas que ya pago 
+			# fechas = [fecha.id+i for i in range(len(facturas_emitidas_afiliado))]
+			# Fechas que va a pagar 
+		print("fechas")
+		print(fechas)
+		print("estas son las fechas a pagar")
+		print(fechas_pagar[0])
+
 
 		fact_emitidas = int((datetime.datetime.now().date() - fecha_inicio).days / 30)	
-		
-		if fact_emitidas <= 0:
-			fact_emitidas = 1
-		else:
-			fact_emitidas+=1
+		print(fact_emitidas)
 
-		historial = AporteAfiliado.objects.filter(
-								afiliado=user_filt.id,
-								aporte_mensual_afil=fact_amu.id
-								).order_by('-fecha_pago')
-	
+		
 		fact_pagadas = len(historial)
 		fact_vencidas = fact_emitidas - fact_pagadas
 

@@ -350,6 +350,7 @@ class FormularioRegistroUsuario(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
+					'type': 'text'
 					
 
 				}
@@ -721,7 +722,7 @@ class FormularioRegistroAfiliadoAntiguo(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					
+					'type': 'text'
 
 				}
 			),
@@ -856,7 +857,7 @@ class FormularioModificarDatos(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					
+					'type': 'text'
 
 				}
 			),
@@ -1460,7 +1461,7 @@ class FormularioActualizarDatos(forms.ModelForm):
 				
 				attrs = {
 					'class': 'mdl-textfield__input',
-					
+						'type': 'text'
 
 				}
 			),

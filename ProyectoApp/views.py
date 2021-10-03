@@ -44,13 +44,16 @@ class Login(FormView):
 	@method_decorator(csrf_protect)
 	@method_decorator(never_cache)
 	def dispatch(self, request, *args, **kwargs):
+		print("pase por aqui")
+		print(request)
 		if request.user.is_authenticated:
 			return HttpResponseRedirect(self.get_success_url())
 		else:
 			return super(Login, self).dispatch(request, *args, **kwargs)
 
 	def form_valid(self, form):
-		
+		print("pase por aqui")
+		print(form.get_user())
 		login(self.request, form.get_user())
 		return super(Login, self).form_valid(form)
 
@@ -1777,6 +1780,8 @@ class RecaudadorRegistroAfiliado(DetailView):
 							return HttpResponseRedirect(f'/recaudregistafil{user_log}/')
 
 						else:
+							print("Estoy dentro del except")
+							print(e)
 							messages.error(request, '¡Valor incorrecto en datos!')
 							return HttpResponseRedirect(f'/recaudregistafil{user_log}/')
 				
@@ -1785,6 +1790,8 @@ class RecaudadorRegistroAfiliado(DetailView):
 					return HttpResponseRedirect(f'/recaudregistafil{user_log}/')
 				
 			else:
+				print("entre al form errors")
+				print(form.errors)
 				messages.error(request, '¡Valor incorrecto en datos!')
 				
 				return HttpResponseRedirect(f'/recaudregistafil{user_log}/')
@@ -3011,6 +3018,7 @@ class RecaudadorActDatos(DetailView):
 class RecaudadorDashboardAfiliadosDeudas(DetailView):
 	''' Filtrar a los afiliados que presenten deudas '''
 	def get(self, request, user_log, *args, **kwargs):
+		print("ENTREEEE AQUIII")
 		if request.user.groups.filter(name__in=['Recaudador']):
 			
 			afiliados_deudas = generar_info_direc_afiliados_deudas(request, user_log)

@@ -7,7 +7,7 @@ class Fechas(models.Model):
 	agno = models.IntegerField(max_length=60)
 	mes = models.IntegerField(max_length=60)
 	nombre_mes = models.IntegerField(max_length=60)
-	mes_abreviado = models.CharField(max_length=50,null=True)
+
 	def __str__(self):
 		return f"{self.agno}-{self.mes}"
 class CustomUser(AbstractUser):
