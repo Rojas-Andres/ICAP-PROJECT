@@ -2526,7 +2526,7 @@ class RecaudadorCobroMultipleEfect(DetailView):
 			# Fechas que va a pagar 
 
 			pass
-		print(fechas_pagar)
+
 		context = cobrar_aporte_mult(request, user_log, usuario, fecha_pago, cant, tam, talon,numero_recibo,fechas_pagar )
 		print("\n\n\n\n\n\n")
 		messages.success(request, 'Cobro múltiple efectuado correctamente')
@@ -3548,7 +3548,7 @@ class GenerarPDF(DetailView):
 			'recaudador': recaudador.username,
 			'recaudador_ci': recaudador.ci,
 			'recaudador_mat': recaudador.matricula,
-			'mes_pagado': str(querie.agno) + "-" + str(querie.mes_abreviado),
+			'mes_pagado': str(querie.agno) + "-" + str(querie.nombre_mes),
 			'numero_recibo':info_aporte.numero_recibo,
 			'recaudador_apell_pat':recaudador.apell_pat,
 			'recaudador_first_name':recaudador.first_name
