@@ -507,11 +507,12 @@ def cal_deuda_afiliado_simple(user_filt):
 						afiliado=user_filt.id,
 						aporte_mensual_afil=fact_amu.id
 						).order_by('-fecha_pago')
-	cant =1
+	cant = 1
 	fecha_inicio = user_filt.fecha_registro
 	querie  =CustomUser.objects.filter(username=user_filt).first()
 	print("ESTE ES EL TIPO DE DATOS DE FECHA INICIO")
 	print(type(fecha_inicio))
+	todas_fechas = Fechas.objects.all()
 	if len(aportes_ami) == 0:
 		# APORTES ACTUALES
 		if len(historial) == 0:
@@ -527,29 +528,30 @@ def cal_deuda_afiliado_simple(user_filt):
 			fecha = Fechas.objects.filter(agno=querie.fecha_registro.year,mes = querie.fecha_registro.month).first()
 			#Sacamos todas las fechas a pagar
 			fechas = [fecha.id+i for i in range(cant)]
+			todas_fechas = todas_fechas[fecha.id-1:]
+			fechas2 = 0
+			fecha_final = Fechas.objects.filter(agno=d2.year,mes = d2.month).first()
+			fechas2 = (fecha_final.id - fecha.id) + 1  
 			#Las filtramos en fechas para saber que meses va a pagar
 			fechas_pagar = Fechas.objects.filter(
 				id__in = fechas
 			)
 		else:
-			#Aca debe de ir cuando el afiliado ya tenga facturas pagadas que debe de hacerse
-			fecha = Fechas.objects.filter(agno=querie.fecha_registro.year,mes = querie.fecha_registro.month).first()
-			#Ultima fecha pagada 
-			val = fecha.id + len(historial)
-			# Fechas a pagar
-			fechas = [val+i for i in range(cant)]
-			fechas_pagar = Fechas.objects.filter(
-				id__in = fechas
-			)
-			# Fechas que ya pago 
-			# fechas = [fecha.id+i for i in range(len(facturas_emitidas_afiliado))]
-			# Fechas que va a pagar 
+			today = date.today()
+			fecha_inicial = historial[len(historial)-1].fecha_id_pago_id
+			d2 = datetime.date(today.year, today.month, 10)
+			fecha_final = Fechas.objects.filter(agno=d2.year,mes = d2.month).first()
+
+			fechas2 = (fecha_final.id -fecha_inicial)
+		
+
+		'''
 		print("fechas")
 		print(fechas)
 		print("estas son las fechas a pagar")
 		print(fechas_pagar[0])
-
-
+		'''
+		
 		fact_emitidas = int((datetime.datetime.now().date() - fecha_inicio).days / 30)	
 		print(fact_emitidas)
 
@@ -575,7 +577,7 @@ def cal_deuda_afiliado_simple(user_filt):
 			'fact_pendientes': sum([fact_emitidas, -fact_pagadas]),
 			'deuda': deuda,
 			'total_aportado': total_aportado,
-			'fact_vencidas': fact_vencidas,
+			'fact_vencidas': fechas2,
 			
 			'estado': user_filt.estado_usuario,
 			'AMU': True,
