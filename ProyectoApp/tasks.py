@@ -487,8 +487,6 @@ def cal_deuda_afiliado(request, user_log, tam, th, start_date, end_date):
 	return context  
 
 def cal_deuda_afiliado_simple(user_filt):
-	
-	
 	user_filt = CustomUser.objects.get(username=user_filt)  # Afiliado
 	fact_ami = AporteMensual.objects.get(aporte_mensual_deno='AMI')
 	fact_amu = AporteMensual.objects.get(aporte_mensual_deno='AMU')
@@ -502,16 +500,9 @@ def cal_deuda_afiliado_simple(user_filt):
 						afiliado=user_filt.id,
 						aporte_mensual_afil=fact_ami.id
 						).order_by('-fecha_pago')
-
-	aportes_amu = AporteAfiliado.objects.filter(
-						afiliado=user_filt.id,
-						aporte_mensual_afil=fact_amu.id
-						).order_by('-fecha_pago')
 	cant = 1
 	fecha_inicio = user_filt.fecha_registro
 	querie  =CustomUser.objects.filter(username=user_filt).first()
-	print("ESTE ES EL TIPO DE DATOS DE FECHA INICIO")
-	print(type(fecha_inicio))
 	todas_fechas = Fechas.objects.all()
 	if len(aportes_ami) == 0:
 		# APORTES ACTUALES
@@ -544,16 +535,7 @@ def cal_deuda_afiliado_simple(user_filt):
 
 			fechas2 = (fecha_final.id -fecha_inicial)
 		
-
-		'''
-		print("fechas")
-		print(fechas)
-		print("estas son las fechas a pagar")
-		print(fechas_pagar[0])
-		'''
-		
 		fact_emitidas = int((datetime.datetime.now().date() - fecha_inicio).days / 30)	
-		print(fact_emitidas)
 
 		
 		fact_pagadas = len(historial)
@@ -585,7 +567,6 @@ def cal_deuda_afiliado_simple(user_filt):
 		}
 
 	else:
-		
 		# APORTES INICIALES
 		fecha_inicio = fact_ami.fecha_inicio_cobros
 		fecha_fin = fact_amu.fecha_inicio_cobros
