@@ -1,4 +1,4 @@
 django==3.0.7
 xhtml2pdf==0.2.5
 python-dateutil
-psycopg2
+psycopg2-binary==2.8.6

@@ -6,7 +6,7 @@ from django.utils import timezone
 class Fechas(models.Model):
 	agno = models.IntegerField(max_length=60)
 	mes = models.IntegerField(max_length=60)
-	nombre_mes = models.IntegerField(max_length=60)
+	nombre_mes = models.CharField(max_length=60)
 
 	def __str__(self):
 		return f"{self.agno}-{self.mes}"

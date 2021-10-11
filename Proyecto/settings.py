@@ -104,7 +104,7 @@ DATABASES = {
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'd8mhv679bmtfem',
         'USER': 'sashfauqymexpt',
         'PASSWORD': '65b0ed1cfe2fa2bd6daff0348998ae42adf40ae3654ab72e030636a61c9ef832',
